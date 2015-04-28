@@ -68,10 +68,10 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/WebSite/AdminWeb/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12962963" vertical-offset="1080" max-vertical-offset="1890">
-              <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.8703704" vertical-offset="750" max-vertical-offset="1875">
+              <caret line="97" column="5" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
               <folding>
-                <marker date="1430212362000" expanded="false" signature="874:948" placeholder="..." />
+                <marker date="1430212453000" expanded="false" signature="874:948" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -461,10 +461,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/WebSite/AdminWeb/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12962963" vertical-offset="1080" max-vertical-offset="1890">
-          <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.8703704" vertical-offset="750" max-vertical-offset="1875">
+          <caret line="97" column="5" selection-start-line="97" selection-start-column="5" selection-end-line="97" selection-end-column="5" />
           <folding>
-            <marker date="1430212362000" expanded="false" signature="874:948" placeholder="..." />
+            <marker date="1430212453000" expanded="false" signature="874:948" placeholder="..." />
           </folding>
         </state>
       </provider>
