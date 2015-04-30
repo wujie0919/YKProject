@@ -48,12 +48,23 @@
                         <!--</div>-->
                     <!--</div>-->
                 </div>
-                <div class="panel-foot text-center"><button class="button button-block bg-main text-big">立即登录后台</button></div>
+                <div class="panel-foot text-center"><button class="button button-block bg-main text-big" onclick="loginAction()">立即登录后台</button></div>
             </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    function loginAction(){
+        var username = document.getElementsByClassName('admin').valueOf;
+        var password = document.getElementsByClassName('password').valueOf;
+
+//        var username = $(".admin").val();
+//        var password = $(".password").val();
+        alert(username + password);
+    }
+</script>
 
 </body>
 </html>
