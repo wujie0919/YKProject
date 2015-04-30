@@ -48,7 +48,7 @@
                         <!--</div>-->
                     <!--</div>-->
                 </div>
-                <div class="panel-foot text-center"><button class="button button-block bg-main text-big" onclick="loginAction()">立即登录后台</button></div>
+                <div class="panel-foot text-center"><input class="button button-block bg-main text-big" type="button" value="立即登录后台" onclick="loginAction()"></div>
             </div>
             </form>
         </div>
@@ -63,6 +63,20 @@
 //        var username = $(".admin").val();
 //        var password = $(".password").val();
         alert(username + password);
+        var par;
+        $.ajax({
+            type:"POST",
+            url:"./AdminLogin.php",
+            data:par,
+            success:function(msg) {
+                var obj = JSON.parse(msg);
+                if(obj['success'] == '1'){
+                    location.href = "./index.html";
+                }else{
+                    alert('账号错误');
+                }
+            }
+        });
     }
 </script>
 
