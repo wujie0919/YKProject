@@ -8,3 +8,5 @@
 7、videoDes 视频描述
 8、videoStatus 视频状态
  */
+ CREATE TABLE  if not exists YK_Video(voideoId VARCHAR (20) PRIMARY KEY ,videoAddress VARCHAR (10),videoLength VARCHAR (10),videowner VARCHAR (20), videoType VARCHAR (2),
+ uploadDate VARCHAR (20),videoDes VARCHAR (200),videoStatus VARCHAR (2))

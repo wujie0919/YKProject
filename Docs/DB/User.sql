@@ -10,3 +10,5 @@
 9、iden 第三方的唯一标识
 预留其他字段
  */
+ CREATE TABLE  if not exists YK_User(userId VARCHAR (20) PRIMARY KEY ,nickName VARCHAR (20),CreateDate VARCHAR (20),token VARCHAR (50),password VARCHAR (100), userStatus VARCHAR (2),
+fromSource VARCHAR (2),iden VARCHAR (100));
