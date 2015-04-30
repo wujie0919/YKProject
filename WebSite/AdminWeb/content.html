@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
-    <title>拼图后台管理-后台管理</title>
+    <title>后台管理</title>
     <link rel="stylesheet" href="../Resources/css/pintuer.css">
     <link rel="stylesheet" href="../Resources/css/admin.css">
     <script src="../Resources/js/jquery.js"></script>
@@ -28,7 +28,7 @@
                 <a class="button button-little bg-yellow" href="login.html">注销登录</a>
             </span>
             <ul class="nav nav-inline admin-nav">
-                <li><a href="index.html" class="icon-home"> 开始</a>
+                <li><a href="index.html" class="icon-home"> 用户管理</a>
                     <ul><li><a href="system.html">系统设置</a></li><li><a href="content.html">内容管理</a></li><li><a href="#">订单管理</a></li><li class="active"><a href="#">会员管理</a></li><li><a href="#">文件管理</a></li><li><a href="#">栏目管理</a></li></ul>
                 </li>
                 <li><a href="system.html" class="icon-cog"> 系统</a>
@@ -57,10 +57,10 @@
 <div class="admin">
 	<form method="post">
     <div class="panel admin-panel">
-    	<div class="panel-head"><strong>内容列表</strong></div>
+    	<div class="panel-head"><strong>视频列表</strong></div>
         <div class="padding border-bottom">
             <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-            <input type="button" class="button button-small border-green" value="添加文章" />
+            <input type="button" class="button button-small border-green" value="添加视频" />
             <input type="button" class="button button-small border-yellow" value="批量删除" />
             <input type="button" class="button button-small border-blue" value="回收站" />
         </div>
@@ -93,7 +93,6 @@
     </div>
     </form>
     <br />
-    <p class="text-right text-gray">基于<a class="text-gray" target="_blank" href="#">拼图前端框架</a>构建</p>
 </div>
 
 </body>
