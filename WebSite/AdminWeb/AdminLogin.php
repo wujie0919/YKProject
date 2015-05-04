@@ -6,10 +6,12 @@
  * Time: 下午4:13
  */
 
-$username = $_GET["username"];
-$password = $_GET["password"];
+$username = $_POST["username"];
+$password = $_POST["password"];
 
 $json = array();
+
+
 
 if($username == "admin" && $password == "admin"){
     $json["success"] = '1';
