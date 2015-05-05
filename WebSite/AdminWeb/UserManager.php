@@ -31,6 +31,7 @@ if(!$_SESSION["Login"])
     exit;
 }
 ?>
+
 <div class="lefter">
     <div class="logo"><a href="#" target="_blank"><img src="../Resources/images/logo.png" alt="后台管理系统" /></a></div>
 </div>
@@ -75,12 +76,12 @@ if(!$_SESSION["Login"])
 </div>
 
 <div class="admin">
-    <form method="post">
+    <form method="post" action="">
         <div class="panel admin-panel">
             <div class="panel-head"><strong>用户列表</strong></div>
             <div class="padding border-bottom">
                 <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-                <input type="button" class="button button-small border-green" value="添加用户" />
+                <input type="button" class="button button-small border-green" value="添加用户" " />
                 <input type="button" class="button button-small border-yellow" value="批量删除" />
                 <input type="button" class="button button-small border-blue" value="被封用户" />
             </div>
@@ -114,6 +115,22 @@ if(!$_SESSION["Login"])
     </form>
     <br />
 </div>
+
+<?php
+    if($_POST['addButton']){
+        printf("not null");
+        echo "not null";
+    }else{
+        printf(" null");
+        echo "null";
+    }
+?>
+
+<script type="text/javascript">
+    function addAction(){
+        alert("hello");
+    }
+</script>
 
 
 </body>

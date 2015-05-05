@@ -59,7 +59,7 @@
             <div class="panel-head"><strong>用户列表</strong></div>
             <div class="padding border-bottom">
                 <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-                <input type="button" class="button button-small border-green" value="添加用户" />
+                <input type="button" class="button button-small border-green" value="添加用户" name="addbutton" onclick="addAction()" />
                 <input type="button" class="button button-small border-yellow" value="批量删除" />
                 <input type="button" class="button button-small border-blue" value="被封用户" />
             </div>
@@ -94,6 +94,37 @@
     <br />
 </div>
 
+<?php
+    if($_POST['addbutton']){
+        echo "1"
+    }else{
+        echo "2";
+    }
+?>
+
+<script>
+
+function addAction(){
+//    alert("hello");
+    var par = "action=update&dataBase=YK_User";
+    $.ajax({
+        type:"POST",
+        url:"../Config/DataBase.php",
+        data:par,
+        success:function(msg) {
+            alert(msg);
+//            var obj = JSON.parse(msg);
+//            if(obj['success'] == '1'){
+//                    alert('正确');
+////                location.href = "./UserManager.php";
+//            }else{
+//                alert('账号或密码错误');
+//            }
+        }
+    });
+}
+
+</script>
 
 </body>
 </html>

@@ -258,7 +258,7 @@ class DBHelper
 	/**
 	 * Performs an update statement
 	 * Enter description here ...
-	 * @param string $sql UPDATE statement sql (placeholder allowed)
+	 * @param string $sql UPDATE statement sql (p laceholder allowed)
 	 * @param array $params parameter values if placeholders in SQL
 	 */
 	public function update($sql,$params=null)
