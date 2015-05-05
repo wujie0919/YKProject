@@ -25,12 +25,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="dbhelper.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dbhelper.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Config/dbhelper.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48128343" vertical-offset="0" max-vertical-offset="8925">
-              <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+            <state vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="8925">
+              <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataBase.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AdminWeb/DataBase.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.28074867" vertical-offset="0" max-vertical-offset="975">
+              <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+              <folding>
+                <element signature="e#6#85#0#PHP" expanded="true" />
+                <marker date="1430797855000" expanded="true" signature="1203:1251" placeholder="delete from ..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,6 +57,7 @@
         <option value="$PROJECT_DIR$/AdminWeb/login.html" />
         <option value="$PROJECT_DIR$/AdminWeb/AdminLogin.php" />
         <option value="$PROJECT_DIR$/Config/WebConfig.php" />
+        <option value="$PROJECT_DIR$/Config/dbhelper.class.php" />
         <option value="$PROJECT_DIR$/AdminWeb/DataBase.php" />
       </list>
     </option>
@@ -250,16 +264,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#6#85#0#PHP" expanded="true" />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="select * fro..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="select * fro..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="delete from ..." />
+            <marker date="1430797855000" expanded="true" signature="1203:1251" placeholder="delete from ..." />
           </folding>
         </state>
       </provider>
@@ -437,26 +442,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AdminWeb/DataBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38961038" vertical-offset="0" max-vertical-offset="1110">
-          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
-          <folding>
-            <element signature="e#6#85#0#PHP" expanded="true" />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="select * fro..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="select * fro..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="insert into ..." />
-            <marker date="1430797060000" expanded="true" signature="-1:-1" placeholder="delete from ..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/PDO.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3435829" vertical-offset="10828" max-vertical-offset="20430">
@@ -509,9 +494,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Config/dbhelper.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48128343" vertical-offset="0" max-vertical-offset="8925">
-          <caret line="24" column="38" selection-start-line="24" selection-start-column="38" selection-end-line="24" selection-end-column="38" />
+        <state vertical-scroll-proportion="-17.5" vertical-offset="0" max-vertical-offset="8925">
+          <caret line="28" column="34" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AdminWeb/DataBase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28074867" vertical-offset="0" max-vertical-offset="975">
+          <caret line="14" column="31" selection-start-line="14" selection-start-column="31" selection-end-line="14" selection-end-column="31" />
+          <folding>
+            <element signature="e#6#85#0#PHP" expanded="true" />
+            <marker date="1430797855000" expanded="true" signature="1203:1251" placeholder="delete from ..." />
+          </folding>
         </state>
       </provider>
     </entry>
