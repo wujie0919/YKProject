@@ -18,4 +18,7 @@ if($username == "admin" && $password == "admin"){
 }else{
     $json["success"] = '0';
 }
+//设置session
+session_start();
+$_SESSION["Login"]=$username;
 echo json_encode($json);
