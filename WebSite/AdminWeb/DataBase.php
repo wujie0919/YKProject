@@ -14,6 +14,16 @@ define(DB_PASS,'123');
 define(DB_DATABASENAME,'test');
 define(DB_TABLENAME,'student');
 
+
+class DBDAO{
+    public function __construct{
+
+    }
+
+}
+
+
+
 $myconn = mysql_connect(DB_HOST, DB_USER, DB_PASS);
 if(!$myconn){
     die("connect failed" . mysql_error());
