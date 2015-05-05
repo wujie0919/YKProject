@@ -43,8 +43,15 @@ if(!$_SESSION["Login"])
                 <a class="button button-little bg-yellow" href="logout.php">注销登录</a>
             </span>
             <ul class="nav nav-inline admin-nav">
-                <li class="active"><a href="index.html" class="icon-home"> 用户管理</a>
-                    <ul><li><a href="system.html">系统设置</a></li><li><a href="content.html">内容管理</a></li><li><a href="#">订单管理</a></li><li class="active"><a href="#">会员管理</a></li><li><a href="#">文件管理</a></li><li><a href="#">栏目管理</a></li></ul>
+                <li class="active"><a href="UserManager.php" class="icon-home"> 用户管理</a>
+                    <ul>
+<!--                        <li><a href="system.html">系统设置</a></li>-->
+<!--                        <li><a href="content.html">内容管理</a></li>-->
+<!--                        <li><a href="#">订单管理</a></li>-->
+                        <li class="active"><a href="#">用户管理</a></li>
+<!--                        <li><a href="#">文件管理</a></li>-->
+<!--                        <li><a href="#">栏目管理</a></li>-->
+                    </ul>
                 </li>
                 <li><a href="system.html" class="icon-cog"> 系统</a>
                     <ul><li><a href="#">全局设置</a></li><li class="active"><a href="#">系统设置</a></li><li><a href="#">会员设置</a></li><li><a href="#">积分设置</a></li></ul>
@@ -68,7 +75,7 @@ if(!$_SESSION["Login"])
                 ?>
             </span>
             <ul class="bread">
-                <li><a href="index.html" class="icon-home"> 开始</a></li>
+                <li><a href="#" class="icon-home"> 开始</a></li>
                 <li>后台首页</li>
             </ul>
         </div>
@@ -115,22 +122,6 @@ if(!$_SESSION["Login"])
     </form>
     <br />
 </div>
-
-<?php
-    if($_POST['addButton']){
-        printf("not null");
-        echo "not null";
-    }else{
-        printf(" null");
-        echo "null";
-    }
-?>
-
-<script type="text/javascript">
-    function addAction(){
-        alert("hello");
-    }
-</script>
 
 
 </body>
