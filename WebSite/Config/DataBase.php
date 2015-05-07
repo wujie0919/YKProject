@@ -35,7 +35,7 @@ define(DB_TABLENAME,'student');
         }
         echo  json_encode($obj);
     }
-    if(!var_dump($success))
+    if(empty($success))
         echo "成功";
     else
         echo "失败";

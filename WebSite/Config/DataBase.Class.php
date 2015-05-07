@@ -31,7 +31,7 @@ class DataBase{
     }
 
     public function  updateAction($sql){
-        $success = $this ->dbhelper->update($sql,null);
+        $success = $this->dbhelper->update($sql,null);
         return $this->isSuccess($success);
     }
 
