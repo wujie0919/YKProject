@@ -35,14 +35,13 @@ define(DB_TABLENAME,'student');
         }
         echo  json_encode($obj);
     }
-if(empty($success)){
-    return '1';
-}else{
-    return '0';
-}
+    if(empty($success)){
+        return '1';
+    }else{
+        return '0';
+    }
 
 //    if(empty($success))
 //        echo "成功";
 //    else
 //        echo "失败";
-
