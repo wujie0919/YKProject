@@ -9,10 +9,11 @@
 require '../Config/dbhelper.class.php';
 
 
-define(DB_HOST,'localhost:3306');
+define(DB_HOST,'127.0.0.1:3306');
 define(DB_USER,'root');
-define(DB_PASS,'root');
-define(DB_DATABASENAME,'User');
+//define(DB_PASS,'root');
+define(DB_PASS,'');
+define(DB_DATABASENAME,'YKDB');
 define(DB_TABLENAME,'student');
 
     $name = $_POST['dataBase'];

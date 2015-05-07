@@ -6,6 +6,6 @@
  * Time: 下午4:13
  */
 
-$db_name = "my_data";
+$db_name = "YKDB";
 $db_username = "root";
 global $db_password;
