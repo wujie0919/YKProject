@@ -7,6 +7,12 @@
  */
 
 require_once ("../Config/WebConfig.php");
+require '../Config/DataBase.Class.php';
+
+$data = new DataBase();
+$sql = @"delete from YK_User";
+$data->deleteAction($sql);
+
 
 define(DB_HOST,'localhost:3306');
 define(DB_USER,'user');
@@ -51,6 +57,10 @@ mysql_select_db(DB_DATABASENAME, $myconn);
 //mysql_close($myconn);
 
 // delete
+
+
+
+
 $sql = "delete from ".DB_TABLENAME." where sid = '12345'";
 if(mysql_query($sql,$myconn)){
     echo "success";

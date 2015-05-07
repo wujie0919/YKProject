@@ -45,13 +45,16 @@ class DataBase{
         return $this->isSuccess($success);
     }
 
-
     public  function isSuccess($success){
-        if(var_dump($success)){
-            return "失败";
+        if(empty($success)){
+            return '1';
         }else{
-            return "成功";
+            return '0';
         }
+//            return "失败";
+//        }else{
+//            return "成功";
+//        }
     }
 }
 
