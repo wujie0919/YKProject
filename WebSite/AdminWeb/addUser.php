@@ -101,17 +101,17 @@ if(!$_SESSION["Login"])
                 <td width="40px">昵称：</td>
                 <td width="200px"><input type="text" id="nickname" width="200px"/></td>
             </tr>
-            <tr style="height: 40px">
-                <td width="40px">密码：</td>
-                <td width="200px"><input type="text" id="nickname" width="200px"/></td>
-            </tr>
+<!--            <tr style="height: 40px">-->
+<!--                <td width="40px">密码：</td>-->
+<!--                <td width="200px"><input type="text" id="nickname" width="200px"/></td>-->
+<!--            </tr>-->
             <tr style="height: 40px">
                 <td width="40px">唯一标识（仅用于第三方登陆的账号）：</td>
-                <td width="200px"><input type="text" id="nickname" width="200px"/></td>
+                <td width="200px"><input type="text" id="iden" width="200px"/></td>
             </tr>
             <tr style="height: 40px">
                 <td width="40px">token（仅用于iPhone）：</td>
-                <td width="200px"><input type="text" id="nickname" width="200px"/></td>
+                <td width="200px"><input type="text" id="token" width="200px"/></td>
             </tr>
             <tr style="height: 40px">
                 <td>用户状态：</td>
@@ -138,13 +138,38 @@ if(!$_SESSION["Login"])
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="button" value="确定" onclick=""/></td>
+                <td colspan="2" align="center"><input type="button" value="确定" onclick="subData()"/></td>
             </tr>
         </table>
     </form>
     <br />
 </div>
+<script>
+    function subData(){
+        var name=$("#nickname").val();
+        var iden=$("#iden").val();
+        var token=$("#token").val();
+        var status=$("input[name='status']:checked").val();
+        var fromSource=$("input[name='fs']:checked").val();
+        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource;
+        alert(par);
+        $.ajax({
+            type:"POST",
+            url:"./addAndUpdateDao.php",
+            data:par,
+            success:function(msg) {
+                var obj = JSON.parse(msg);
+                if(obj['success'] == '1'){
+                    alert('添加成功');
 
+                }else{
+                    alert('添加失败');
+                }
+            }
+        })
+
+    }
+</script>
 
 </body>
 </html>
