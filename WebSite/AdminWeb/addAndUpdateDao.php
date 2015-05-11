@@ -28,8 +28,9 @@ $iden=$_POST["iden"];
 $token=$_POST["token"];
 $status=$_POST["status"];
 $fromSource=$_POST["fromSource"];
+$udate=getUserId();
 
-$sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden)VALUES (".getUserId().",".$nickname.",".getUserId().",".$token.",".$status.",".$fromSource.",".$iden.")";
+$sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden)VALUES (".$udate.",".$nickname.",".$udate.",".$token.",".$status.",".$fromSource.",".$iden.")";
 
 $data=new DataBase();
 $rs=$data->insertAction($sql);

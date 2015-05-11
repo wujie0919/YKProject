@@ -48,7 +48,14 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             </span>
             <ul class="nav nav-inline admin-nav">
                 <li><a href="UserManager.php" class="icon-home"> 用户管理</a>
-                    <ul><li><a href="system.html">系统设置</a></li><li><a href="content.html">内容管理</a></li><li><a href="#">订单管理</a></li><li class="active"><a href="#">会员管理</a></li><li><a href="#">文件管理</a></li><li><a href="#">栏目管理</a></li></ul>
+                    <ul>
+                        <!--                        <li><a href="system.html">系统设置</a></li>-->
+                        <!--                        <li><a href="content.html">内容管理</a></li>-->
+                        <!--                        <li><a href="#">订单管理</a></li>-->
+                        <li class="active"><a href="#">用户管理</a></li>
+                        <!--                        <li><a href="#">文件管理</a></li>-->
+                        <!--                        <li><a href="#">栏目管理</a></li>-->
+                    </ul>
                 </li>
                 <!--                <li><a href="system.html" class="icon-cog"> 系统</a>-->
                 <!--                    <ul><li><a href="#">全局设置</a></li><li class="active"><a href="#">系统设置</a></li><li><a href="#">会员设置</a></li><li><a href="#">积分设置</a></li></ul>-->
@@ -60,6 +67,9 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         <!--                        <li><a href="#">分类设置</a></li>-->
                         <!--                        <li></li><a href="#">链接管理</a></li>-->
                     </ul>
+                </li>
+                <li><a href="CommentManager.php" class="icon-shopping-cart">评论管理</a>
+                    <ul><li><a href="CommentManager.php">评论管理</a></li></ul>
                 </li>
                 <!--                <li><a href="#" class="icon-shopping-cart"> 订单</a></li>-->
                 <!--                <li><a href="#" class="icon-user"> 会员</a></li>-->

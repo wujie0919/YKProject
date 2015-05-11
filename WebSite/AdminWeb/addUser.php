@@ -58,7 +58,15 @@ if(!$_SESSION["Login"])
                 <!--                    <ul><li><a href="#">全局设置</a></li><li class="active"><a href="#">系统设置</a></li><li><a href="#">会员设置</a></li><li><a href="#">积分设置</a></li></ul>-->
                 <!--                </li>-->
                 <li><a href="VedioManager.php" class="icon-file-text"> 视频</a>
-                    <ul><li><a href="#">添加内容</a></li><li class="active"><a href="#">视频管理</a></li><li><a href="#">分类设置</a></li><li><a href="#">链接管理</a></li></ul>
+                    <ul>
+                        <!--                        <li><a href="#">添加内容</a></li>-->
+                        <li class="active"><a href="#">视频管理</a></li>
+                        <!--                        <li><a href="#">分类设置</a></li>-->
+                        <!--                        <li></li><a href="#">链接管理</a></li>-->
+                    </ul>
+                </li>
+                <li><a href="CommentManager.php" class="icon-shopping-cart">评论管理</a>
+                    <ul><li><a href="CommentManager.php">评论管理</a></li></ul>
                 </li>
                 <!--                <li><a href="#" class="icon-shopping-cart"> 订单</a></li>-->
                 <!--                <li><a href="#" class="icon-user"> 会员</a></li>-->
