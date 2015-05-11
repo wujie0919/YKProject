@@ -38,7 +38,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
     <div class="mainer">
         <div class="admin-navbar">
             <span class="float-right">
-            	<a class="button button-little bg-main" href="#">前台首页</a>
+<!--            	<a class="button button-little bg-main" href="#">前台首页</a>-->
                 <a class="button button-little bg-yellow" href="login.html">注销登录</a>
             </span>
             <ul class="nav nav-inline admin-nav">
@@ -98,7 +98,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
                 <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='vedioAddAndUpdate.php?type=add'"/>
                 <input type="button" class="button button-small border-yellow" value="批量删除" />
-                <input type="button" class="button button-small border-blue" value="回收站" />
+<!--                <input type="button" class="button button-small border-blue" value="回收站" />-->
             </div>
             <table class="table table-hover">
                 <tr><th width="45">选择</th><th width="120">分类</th><th width="*">名称</th><th width="100">时间</th><th width="100">操作</th></tr>
