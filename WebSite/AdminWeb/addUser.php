@@ -138,7 +138,7 @@ if(!$_SESSION["Login"])
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="button" value="确定"/></td>
+                <td colspan="2" align="center"><input type="button" value="确定" onclick=""/></td>
             </tr>
         </table>
     </form>
