@@ -7,11 +7,11 @@
  */
 
 require '../Config/dbhelper.class.php';
-
+//
 define(DB_HOST,'127.0.0.1:3306');
 define(DB_USER,'root');
 //define(DB_PASS,'root');
-define(DB_PASS,'');
+define(DB_PASS,'root');
 define(DB_DATABASENAME,'YKDB');
 define(DB_TABLENAME,'student');
 
@@ -23,7 +23,7 @@ class DataBase{
     }
 
     public function selectAction($sql){
-        $row = $this ->dbhelper->selectAll($sql,null);
+        $row = $this->dbhelper->selectAll($sql,null);
         $obj = array();
         foreach ($row as $key=>$value) {
             $obj[$key] = $value;

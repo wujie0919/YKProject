@@ -30,16 +30,16 @@ $udate=$tool->getCommonId();
 if($type=="add")
 {
     $pass=$_POST["pass"];
-    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden,passw)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden','$pass')";
+    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,fromSource,iden,passw)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden','$pass')";
 }
 else
-    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden')";
-
+    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,fromSource,iden)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden')";
 $data=new DataBase();
 $rs=$data->insertAction($sql);
+
 $json = array();
 $json["success"]=$rs;
-echo $json;
+echo json_encode($json);
 
 
 

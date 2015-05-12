@@ -170,31 +170,31 @@ if(!$_SESSION["Login"])
     <br />
 </div>
 <script>
-    function updateData(){
-        var name=$("#nickname").val();
-        var iden=$("#iden").val();
-        var token=$("#token").val();
-        var status=$("input[name='status']:checked").val();
-        var fromSource=$("input[name='fs']:checked").val();
-        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&type=up";
-        alert(par);
-        $.ajax({
-            type:"POST",
-            url:"./addAndUpdateDao.php",
-            data:par,
-            success:function(msg) {
-                var obj = JSON.parse(msg);
-                alert(obj['success']);
-                if(obj['success'] == '1'){
-                    alert('更新成功');
-
-                }else{
-                    alert('更新失败');
-                }
-            }
-        })
-
-    }
+//    function updateData(){
+//        var name=$("#nickname").val();
+//        var iden=$("#iden").val();
+//        var token=$("#token").val();
+//        var status=$("input[name='status']:checked").val();
+//        var fromSource=$("input[name='fs']:checked").val();
+//        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&type=up";
+//        alert(par);
+//        $.ajax({
+//            type:"POST",
+//            url:"./addAndUpdateDao.php",
+//            data:par,
+//            success:function(msg) {
+//                var obj = JSON.parse(msg);
+//                alert(obj['success']);
+//                if(obj['success'] == '1'){
+//                    alert('更新成功');
+//
+//                }else{
+//                    alert('更新失败');
+//                }
+//            }
+//        })
+//
+//    }
 
     function insertData()
     {
@@ -208,9 +208,10 @@ if(!$_SESSION["Login"])
 //        alert(par);
         $.ajax({
             type:"POST",
-            url:"./addAndUpdateDao.php",
+            url:"addAndUpdateDao.php",
             data:par,
             success:function(msg) {
+//                alert(msg);
                 var obj = JSON.parse(msg);
                 if(obj['success'] == '1'){
                     alert('添加成功');

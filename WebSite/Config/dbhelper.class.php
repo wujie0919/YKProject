@@ -24,7 +24,7 @@ class DBHelper
 	 * @param string $pass : password
 	 * @param bool $debug : debug mode
 	 */
-	public function initDb($host,$dbname,$user,$pass,$port=3306,$socket="/tmp/mysql.sock",$conntype="net",$debug=false)
+	public function initDb($host,$dbname,$user,$pass,$port=3306,$socket="/tmp/mysql.sock",$conntype="net",$debug=true)
 	{
 		//intialize connection with PDO
 		//fix by Mr Lei for UTF8 special chars
