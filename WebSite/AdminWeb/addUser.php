@@ -204,14 +204,12 @@ if(!$_SESSION["Login"])
         var status=$("input[name='status']:checked").val();
         var fromSource=$("input[name='fs']:checked").val();
         var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&pass="+pass+"&type=add";
-        alert(par);
         $.ajax({
             type:"POST",
             url:"./addAndUpdateDao.php",
             data:par,
             success:function(msg) {
                 var obj = JSON.parse(msg);
-                alert(obj['success']);
                 if(obj['success'] == '1'){
                     alert('添加成功');
 

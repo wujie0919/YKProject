@@ -87,7 +87,7 @@ if(!$_SESSION["Login"])
             </span>
             <ul class="bread">
                 <li><a href="#" class="icon-home"> 开始</a></li>
-                <li>后台首页</li>
+                <li>用户管理</li>
             </ul>
         </div>
     </div>
@@ -141,19 +141,16 @@ if(!$_SESSION["Login"])
                 Exit;
             }
 
-
-            $endData= array();
-            $limtSql="select * from YK_User limit $offset,$num";  //获取相应页数所需要显示的数据";
-            $endData=json_decode($data->selectAction($limtSql),true);
-
             echo "<div id='msg'>";
             echo "<table class='table table-hover'>
                 <tr><th width='45'>选择</th><th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建账号时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
             if($pagenum<=0)
-                echo "<tr><td colspan='5' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
+                echo "<tr><td colspan='9' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
             else
             {
-
+                $endData= array();
+                $limtSql="select * from YK_User limit $offset,$num";  //获取相应页数所需要显示的数据";
+                $endData=json_decode($data->selectAction($limtSql),true);
                 foreach($endData as $user)
                 {
                     echo "<tr>";

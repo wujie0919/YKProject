@@ -26,6 +26,13 @@ $status=$_POST["status"];
 $fromSource=$_POST["fromSource"];
 
 $type=$_POST["type"];
+
+$tool= new Tools();
+$udate=$tool->getCommonId();
+
+$json = array();
+$json["success"]=$udate;
+return;
 $sql="";
 if($type=="add")
 {
@@ -34,9 +41,8 @@ if($type=="add")
 }
 else
     $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden)VALUES (".$udate.",".$nickname.",".$udate.",".$token.",".$status.",".$fromSource.",".$iden.")";
+echo $sql;
 
-$tool= new Tools();
-$udate=$tool->getCommonId();
 
 $data=new DataBase();
 $rs=$data->insertAction($sql);
