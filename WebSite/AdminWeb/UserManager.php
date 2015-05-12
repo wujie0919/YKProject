@@ -143,7 +143,7 @@ if(!$_SESSION["Login"])
 
             echo "<div id='msg'>";
             echo "<table class='table table-hover'>
-                <tr><th width='45'>选择</th><th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建账号时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
+                <tr><th width='45'>选择</th><th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
             if($pagenum<=0)
                 echo "<tr><td colspan='9' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
             else
@@ -159,11 +159,21 @@ if(!$_SESSION["Login"])
                     echo "<td>".$user['nickName']."</td>";
                     echo "<td>".$user['CreateDate']."</td>";
                     echo "<td>".$user['token']."</td>";
-                    echo "<td>iOS</td>";
-                    echo "<td>".$user['userStatus']."</td>";
-                    echo "<td>".$user['fromSource']."</td>";
-//                    echo "<td>".$user['iden']."</td>";
-                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='{if(confirm('确认删除?')){return true;}return false;}'>删除</a></td>";
+                    echo "<td>".$user['OSType']."</td>";
+                    if($user['userStatus']=="0")
+                        echo "<td>正常</td>";
+                    else
+                        echo "<td>被封用户</td>";
+                    $fromSource=$user['fromSource'];
+                    if($fromSource=="0")
+                        echo "<td>手机</td>";
+                    elseif($fromSource=="1")
+                        echo "<td>微博</td>";
+                    elseif($fromSource=="2")
+                        echo "<td>微信</td>";
+                    elseif($fromSource=="3")
+                        echo "<td>QQ</td>";
+                    echo "<td><a class='button border-blue button-little' href='addUser.php?id=".$user['userId']."&type=update'>修改</a> <a class='button border-yellow button-little' href='#' onclick='{if(confirm('确认删除?')){return true;}return false;}'>删除</a></td>";
                     echo  "</tr>";
                 }
                 echo "<tr><td colspan='9'>".$pagenav."</td></tr>";
