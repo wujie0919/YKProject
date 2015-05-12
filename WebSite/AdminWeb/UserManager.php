@@ -15,12 +15,8 @@
     <script src="../Resources/js/admin.js"></script>
     <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
     <link href="/favicon.ico" rel="bookmark icon" />
-    <style type="text/css">
-        #page{font:12px/16px arial}
-        #page span{float:left;margin:0px 3px;}
-        #page a{float:left;margin:0 3px;border:1px solid #ddd;padding:3px 7px; text-decoration:none;color:#666}
-        #page a.now_page,#page a:hover{color:#fff;background:#05c}
-    </style>
+    <script src="../Resources/js/ajax.js"></script>
+    <link href="../Resources/css/page.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -114,36 +110,62 @@ if(!$_SESSION["Login"])
             $list=array();
             $sql="SELECT * FROM YK_User";
             $list= $data->selectAction($sql);
-            $pagesize=10; //设置每一页显示的记录数
-            $count=sizeof($list);
+            $total=sizeof($list);
+
+            $page=isset($_POST['page'])?intval($_POST['page']):1;//这句就是获取page=18中的page的值，假如不存在page，那么页数就是1。
+            $num=20;                                     //每页显示条数
+            $url = end(explode('/',$_SERVER['PHP_SELF'])); // 获取当前访问的文件名
+
+            //页码计算
+            $pagenum=ceil($total/$num);                                    //获得总页数,也是最后一页
+            $page=min($pagenum,$page);//获得首页
+            $prepg=$page-1;//上一页
+            $nextpg=($page==$pagenum ? 0 : $page+1);//下一页
+            $offset=($page-1)*$num;                                      //获取limit的第一个参数的值，假如第一页则为(1-1)*10=0,第二页为(2-1)*10=10。
+
+            //开始分页导航条代码：
+            $pagenav="第 <B>".($total?($offset+1):0)."</B>-<B>".min($offset+$num,$total)."</B> 条记录，共 $total 条记录&nbsp;";
+
+            //如果只有一页则跳出函数：
+//            if($pagenum<=1) return false;
+
+            $pagenav.=" <a href=javascript:dopage('msg','$url','1');>首页</a> ";
+            if($prepg) $pagenav.=" <a href=javascript:dopage('msg','$url','$prepg');>前页</a> "; else $pagenav.=" 前页 ";
+            if($nextpg) $pagenav.=" <a href=javascript:dopage('msg','$url','$nextpg');>后页</a> "; else $pagenav.=" 后页 ";
+            $pagenav.=" <a href=javascript:dopage('msg','$url','$pagenum');>尾页</a> ";
+            $pagenav.="</select> 页，共 $pagenum 页";
+
+            //假如传入的页数参数大于总页数，则显示错误信息
+//            If($page>$pagenum){
+//                Echo "Error : Can Not Found The page ".$page;
+//                Exit;
+//            }
+
+            echo "<table class='table table-hover'>
+                <tr><th width='45'>选择</th><th width='120'>分类</th><th width='*'>名称</th><th width='100'>时间</th><th width='100'>操作</th></tr>";
+            if(sizeof($data)>0)
+                echo "<tr><td colspan='5' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
+            else
+            {
+                for($i=0;$i<sizeof($data);$i++)
+                {
+
+                }
+            }
+            echo "</table>";
             ?>
-            <table class="table table-hover">
-                <tr><th width="45">选择</th><th width="120">分类</th><th width="*">名称</th><th width="100">时间</th><th width="100">操作</th></tr>
-
-
-<!--                <tr><td><input type="checkbox" name="id" value="2" /></td><td>起步</td><td>框架包含的文件</td><td>2014-9-20</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="3" /></td><td>起步</td><td>浏览器支持</td><td>2014-9-10</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="4" /></td><td>起步</td><td>移动优先、跨屏响应</td><td>2014-9-1</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="5" /></td><td>起步</td><td>基本页面</td><td>2014-8-20</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="6" /></td><td>起步</td><td>第三方应用支持</td><td>2014-8-10</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="7" /></td><td>起步</td><td>业务合作</td><td>2014-8-1</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="8" /></td><td>起步</td><td>使用许可</td><td>2014-7-20</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="9" /></td><td>CSS</td><td>文本</td><td>2014-7-10</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="10" /></td><td>CSS</td><td>背景、边框、圆角</td><td>2014-7-1</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="11" /></td><td>CSS</td><td>边界、填充</td><td>2014-6-20</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-<!--                <tr><td><input type="checkbox" name="id" value="12" /></td><td>CSS</td><td>CSS动画</td><td>2014-6-10</td><td><a class="button border-blue button-little" href="#">修改</a> <a class="button border-yellow button-little" href="#" onclick="{if(confirm('确认删除?')){return true;}return false;}">删除</a></td></tr>-->
-            </table>
-            <div class="panel-foot text-center">
-                <ul class="pagination"><li><a href="#">上一页</a></li></ul>
-                <ul class="pagination pagination-group">
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-                <ul class="pagination"><li><a href="#">下一页</a></li></ul>
-            </div>
+<!---->
+<!--            <div class="panel-foot text-center">-->
+<!--                <ul class="pagination"><li><a href="#">上一页</a></li></ul>-->
+<!--                <ul class="pagination pagination-group">-->
+<!--                    <li><a href="#">1</a></li>-->
+<!--                    <li class="active"><a href="#">2</a></li>-->
+<!--                    <li><a href="#">3</a></li>-->
+<!--                    <li><a href="#">4</a></li>-->
+<!--                    <li><a href="#">5</a></li>-->
+<!--                </ul>-->
+<!--                <ul class="pagination"><li><a href="#">下一页</a></li></ul>-->
+<!--            </div>-->
         </div>
     </form>
     <br />
