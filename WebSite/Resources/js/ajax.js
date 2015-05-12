@@ -1,6 +1,6 @@
 ﻿function dopage(a,url,page)
 {
-	document.getElementById("msg").innerHTML="<img src='loading.gif' />正在读取数据...";
+	document.getElementById("msg").innerHTML="<img src='../Resources/images/loading.gif' />正在读取数据...";
     var msg = document.getElementById("msg");
 	
     var postStr = "page="+page;
@@ -16,16 +16,16 @@
         return;
        }
 
-    ajax.open("POST", url, true);  
-   
-    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
-   
+    ajax.open("POST", url, true);
+
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+
     ajax.send(postStr);
 
     ajax.onreadystatechange = function(){
         if (ajax.readyState == 4 && ajax.status == 200){
                msg.innerHTML = ajax.responseText;
-			   document.getElementById("div1").style.display="none";
+			   //document.getElementById("div1").style.display="none";
             }
       }
 }

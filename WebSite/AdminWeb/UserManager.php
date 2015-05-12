@@ -51,7 +51,7 @@ if(!$_SESSION["Login"])
 <!--                        <li><a href="system.html">系统设置</a></li>-->
 <!--                        <li><a href="content.html">内容管理</a></li>-->
 <!--                        <li><a href="#">订单管理</a></li>-->
-                        <li class="active"><a href="#">用户管理</a></li>
+<!--                        <li class="active"><a href="UserManager.php">用户管理</a></li>-->
 <!--                        <li><a href="#">文件管理</a></li>-->
 <!--                        <li><a href="#">栏目管理</a></li>-->
                     </ul>
@@ -62,7 +62,7 @@ if(!$_SESSION["Login"])
                 <li><a href="VedioManager.php" class="icon-file-text"> 视频</a>
                     <ul>
                         <!--                        <li><a href="#">添加内容</a></li>-->
-                        <li class="active"><a href="#">视频管理</a></li>
+<!--                        <li class="active"><a href="#">视频管理</a></li>-->
                         <!--                        <li><a href="#">分类设置</a></li>-->
                         <!--                        <li></li><a href="#">链接管理</a></li>-->
                     </ul>
@@ -109,11 +109,11 @@ if(!$_SESSION["Login"])
             $data=new DataBase();
             $list=array();
             $sql="SELECT * FROM YK_User";
-            $list= $data->selectAction($sql);
+            $list= json_decode($data->selectAction($sql),true);
             $total=sizeof($list);
 
             $page=isset($_POST['page'])?intval($_POST['page']):1;//这句就是获取page=18中的page的值，假如不存在page，那么页数就是1。
-            $num=20;                                     //每页显示条数
+            $num=1;                                     //每页显示条数
             $url = end(explode('/',$_SERVER['PHP_SELF'])); // 获取当前访问的文件名
 
             //页码计算
@@ -133,26 +133,47 @@ if(!$_SESSION["Login"])
             if($prepg) $pagenav.=" <a href=javascript:dopage('msg','$url','$prepg');>前页</a> "; else $pagenav.=" 前页 ";
             if($nextpg) $pagenav.=" <a href=javascript:dopage('msg','$url','$nextpg');>后页</a> "; else $pagenav.=" 后页 ";
             $pagenav.=" <a href=javascript:dopage('msg','$url','$pagenum');>尾页</a> ";
-            $pagenav.="</select> 页，共 $pagenum 页";
+            $pagenav.="</select>    共 $pagenum 页";
 
             //假如传入的页数参数大于总页数，则显示错误信息
-//            If($page>$pagenum){
-//                Echo "Error : Can Not Found The page ".$page;
-//                Exit;
-//            }
+            If($page>$pagenum){
+                Echo "Error : Can Not Found The page ".$page;
+                Exit;
+            }
 
+
+            $endData= array();
+            $limtSql="select * from YK_User limit $offset,$num";  //获取相应页数所需要显示的数据";
+            $endData=json_decode($data->selectAction($limtSql),true);
+
+            echo "<div id='msg'>";
             echo "<table class='table table-hover'>
-                <tr><th width='45'>选择</th><th width='120'>分类</th><th width='*'>名称</th><th width='100'>时间</th><th width='100'>操作</th></tr>";
-            if(sizeof($data)>0)
+                <tr><th width='45'>选择</th><th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建账号时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
+            if($pagenum<=0)
                 echo "<tr><td colspan='5' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
             else
             {
-                for($i=0;$i<sizeof($data);$i++)
-                {
 
+                foreach($endData as $user)
+                {
+                    echo "<tr>";
+                    echo "<td><input type='checkbox' name='id' value='".$user['userId']."' /></td>";
+                    echo "<td>".$user['userId']."</td>";
+                    echo "<td>".$user['nickName']."</td>";
+                    echo "<td>".$user['CreateDate']."</td>";
+                    echo "<td>".$user['token']."</td>";
+                    echo "<td>iOS</td>";
+                    echo "<td>".$user['userStatus']."</td>";
+                    echo "<td>".$user['fromSource']."</td>";
+//                    echo "<td>".$user['iden']."</td>";
+                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='{if(confirm('确认删除?')){return true;}return false;}'>删除</a></td>";
+                    echo  "</tr>";
                 }
+                echo "<tr><td colspan='9'>".$pagenav."</td></tr>";
+                die();
             }
             echo "</table>";
+            echo "</div>";
             ?>
 <!---->
 <!--            <div class="panel-foot text-center">-->
