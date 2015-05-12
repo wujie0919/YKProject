@@ -152,17 +152,17 @@ if(!$_SESSION["Login"])
                 </td>
             </tr>
             <tr>
-                <td colspan='2' align='center'><input type='button' value='确定' onclick='insertData()'/></td>
-<!--                --><?php
-//                error_reporting(0);
-//                $type=$_GET["type"];
-//                if($type=="add")
-//                    echo "<td colspan='2' align='center'><input type='button' value='确定' onclick='insertData()'/></td>";
-//                else if($type=="update")
-//                    echo "<td colspan='2' align='center'><input type='button' value='确定' onclick='updateData()'/></td>";
-//                else
-//                    exit;
-//                ?>
+<!--                <td colspan='2' align='center'><input type='button' value='确定' onclick='insertData()'/></td>-->
+                <?php
+                error_reporting(0);
+                $type=$_GET["type"];
+                if($type=="add")
+                    echo "<td colspan='2' align='center'><input type='button' value='确定' onclick='insertData()'/></td>";
+                else if($type=="update")
+                    echo "<td colspan='2' align='center'><input type='button' value='确定' onclick='updateData()'/></td>";
+                else
+                    exit;
+                ?>
 
             </tr>
         </table>
@@ -170,31 +170,31 @@ if(!$_SESSION["Login"])
     <br />
 </div>
 <script>
-//    function updateData(){
-//        var name=$("#nickname").val();
-//        var iden=$("#iden").val();
-//        var token=$("#token").val();
-//        var status=$("input[name='status']:checked").val();
-//        var fromSource=$("input[name='fs']:checked").val();
-//        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&type=up";
-//        alert(par);
-//        $.ajax({
-//            type:"POST",
-//            url:"./addAndUpdateDao.php",
-//            data:par,
-//            success:function(msg) {
-//                var obj = JSON.parse(msg);
-//                alert(obj['success']);
-//                if(obj['success'] == '1'){
-//                    alert('更新成功');
-//
-//                }else{
-//                    alert('更新失败');
-//                }
-//            }
-//        })
-//
-//    }
+    function updateData(){
+        var name=$("#nickname").val();
+        var iden=$("#iden").val();
+        var token=$("#token").val();
+        var status=$("input[name='status']:checked").val();
+        var fromSource=$("input[name='fs']:checked").val();
+        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&type=up";
+        alert(par);
+        $.ajax({
+            type:"POST",
+            url:"./addAndUpdateDao.php",
+            data:par,
+            success:function(msg) {
+                var obj = JSON.parse(msg);
+                alert(obj['success']);
+                if(obj['success'] == '1'){
+                    alert('更新成功');
+
+                }else{
+                    alert('更新失败');
+                }
+            }
+        })
+
+    }
 
     function insertData()
     {
