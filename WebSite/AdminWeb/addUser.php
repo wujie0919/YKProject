@@ -109,10 +109,16 @@ if(!$_SESSION["Login"])
                 <td width="40px">昵称：</td>
                 <td width="200px"><input type="text" id="nickname" width="200px"/></td>
             </tr>
-<!--            <tr style="height: 40px">-->
-<!--                <td width="40px">密码：</td>-->
-<!--                <td width="200px"><input type="text" id="nickname" width="200px"/></td>-->
-<!--            </tr>-->
+            <?php
+            error_reporting(0);
+            $type=$_GET["type"];
+            if($type=="add")
+                echo "
+                <tr style='height: 40px'>
+                    <td width='40px'>密码：</td>
+                    <td width='200px'><input type='password' id='pass' width='200px'/></td>
+                </tr>";
+            ?>
             <tr style="height: 40px">
                 <td width="40px">唯一标识（仅用于第三方登陆的账号）：</td>
                 <td width="200px"><input type="text" id="iden" width="200px"/></td>
@@ -124,10 +130,10 @@ if(!$_SESSION["Login"])
             <tr style="height: 40px">
                 <td>用户状态：</td>
                 <td>
+                    正常：
+                    <input type="radio" name="status" value="0" checked="feng"/>
                     被封：
-                    <input type="radio" name="status" value="Male" checked="feng"/>
-                    解封：
-                    <input type="radio" name="status" value="unfeng"/>
+                    <input type="radio" name="status" value="1"/>
                 </td>
             </tr>
 
@@ -135,31 +141,41 @@ if(!$_SESSION["Login"])
                 <td>来源：</td>
                 <td>
                     正常：
-                    <input type="radio" name="fs" value="zc" checked="zc">
+                    <input type="radio" name="fs" value="0" checked="zc">
                     微博:
-                    <input type="radio" name="fs" value="weibo" />
+                    <input type="radio" name="fs" value="1" />
                     微信:
-                    <input type="radio" name="fs" value="weixin">
+                    <input type="radio" name="fs" value="2">
                     QQ：
-                    <input type="radio" name="fs" value="qq">
+                    <input type="radio" name="fs" value="3">
 
                 </td>
             </tr>
             <tr>
-                <td colspan="2" align="center"><input type="button" value="确定" onclick="subData()"/></td>
+                <?php
+                error_reporting(0);
+                $type=$_GET["type"];
+                if($type=="add")
+                    echo "<td colspan='2' align='center'><input type='button' value='确定' onclick='insertData()'/></td>";
+                else if($type=="update")
+                    echo "<td colspan='2' align='center'><input type='button' value='确定' onclick='updateData()'/></td>";
+                else
+                    exit;
+                ?>
+
             </tr>
         </table>
     </form>
     <br />
 </div>
 <script>
-    function subData(){
+    function updateData(){
         var name=$("#nickname").val();
         var iden=$("#iden").val();
         var token=$("#token").val();
         var status=$("input[name='status']:checked").val();
         var fromSource=$("input[name='fs']:checked").val();
-        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource;
+        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&type=up";
         alert(par);
         $.ajax({
             type:"POST",
@@ -167,6 +183,35 @@ if(!$_SESSION["Login"])
             data:par,
             success:function(msg) {
                 var obj = JSON.parse(msg);
+                alert(obj['success']);
+                if(obj['success'] == '1'){
+                    alert('更新成功');
+
+                }else{
+                    alert('更新失败');
+                }
+            }
+        })
+
+    }
+
+    function insertData()
+    {
+        var name=$("#nickname").val();
+        var iden=$("#iden").val();
+        var token=$("#token").val();
+        var pass =$("#pass").val();
+        var status=$("input[name='status']:checked").val();
+        var fromSource=$("input[name='fs']:checked").val();
+        var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&pass="+pass+"&type=add";
+        alert(par);
+        $.ajax({
+            type:"POST",
+            url:"./addAndUpdateDao.php",
+            data:par,
+            success:function(msg) {
+                var obj = JSON.parse(msg);
+                alert(obj['success']);
                 if(obj['success'] == '1'){
                     alert('添加成功');
 
@@ -175,7 +220,6 @@ if(!$_SESSION["Login"])
                 }
             }
         })
-
     }
 </script>
 

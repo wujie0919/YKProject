@@ -17,25 +17,31 @@
 */
 error_reporting(0);
 require '../Config/DataBase.Class.php';
+require '../Common/Tools.php';
 
-function getUserId() {
-    list($t1, $t2) = explode(' ', microtime());
-    return (float)sprintf('%.0f', (floatval($t1) + floatval($t2)) * 1000);
-}
-echo getUserId();
 $nickname=$_POST["nickname"];
 $iden=$_POST["iden"];
 $token=$_POST["token"];
 $status=$_POST["status"];
 $fromSource=$_POST["fromSource"];
-$udate=getUserId();
 
-$sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden)VALUES (".$udate.",".$nickname.",".$udate.",".$token.",".$status.",".$fromSource.",".$iden.")";
+$type=$_POST["type"];
+$sql="";
+if($type=="add")
+{
+    $pass=$_POST["pass"];
+    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden,password)VALUES (".$udate.",".$nickname.",".$udate.",".$token.",".$status.",".$fromSource.",".$iden.",".$pass.")";
+}
+else
+    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden)VALUES (".$udate.",".$nickname.",".$udate.",".$token.",".$status.",".$fromSource.",".$iden.")";
+
+$tool= new Tools();
+$udate=$tool->getCommonId();
 
 $data=new DataBase();
 $rs=$data->insertAction($sql);
 $json = array();
-$json["success"]=$rs;
+$json["success"]=$sql;
 
 
 
