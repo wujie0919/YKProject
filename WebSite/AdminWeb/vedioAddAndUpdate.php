@@ -119,11 +119,11 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
         }
     }
 </script>
+
 <div class="admin">
     <form method="post">
         <table>
             <?php
-
             error_reporting(0);
             require '../Config/DataBase.Class.php';
             $data=new DataBase();
@@ -131,9 +131,6 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             $sql="SELECT name FROM swf_area WHERE parent_id='0'";
             $list= json_decode($data->selectAction($sql),true);
             $type=$_GET["type"];
-
-
-            echo $list;
             if($type=="add")
             {
                 echo "
@@ -150,8 +147,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <tr style='height: 40px'>
                 <td>选择视频地区：</td>
                 <td><select id='swf_area' style='width: 160px'>";
-
-                        for($i=0;$i<sizeof($list);$i++)
+                    for($i=0;$i<sizeof($list);$i++)
                         {
                             $name=$list[i]["name"];
                             echo $name;
@@ -202,7 +198,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                ";
             }
 
-            ?>
+          ?>
 
         </table>
     </form>
