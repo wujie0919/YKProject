@@ -90,14 +90,14 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 <li><a href="UserManager.php" class="icon-home"> 开始</a></li>
                 <li><a href="VedioManager.php">视频管理</a></li>
                 <?php
-                    error_reporting(0);
-                    $type=$_GET["type"];
-                    if($type=="add")
-                        echo "<li>添加视频</li>";
-                    else if($type=="update")
-                        echo "<li>更新视频</li>";
-                    else
-                        exit;
+                error_reporting(0);
+                $type=$_GET["type"];
+                if($type=="add")
+                    echo "<li>添加视频</li>";
+                else if($type=="update")
+                    echo "<li>更新视频</li>";
+                else
+                    exit;
                 ?>
             </ul>
         </div>
@@ -122,39 +122,88 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 <div class="admin">
     <form method="post">
         <table>
-            <tr style="height: 40px">
+            <?php
+
+            error_reporting(0);
+            require '../Config/DataBase.Class.php';
+            $data=new DataBase();
+            $list=array();
+            $sql="SELECT name FROM swf_area WHERE parent_id='0'";
+            $list= json_decode($data->selectAction($sql),true);
+            $type=$_GET["type"];
+
+
+            echo $list;
+            if($type=="add")
+            {
+                echo "
+                    <tr style='height: 40px'>
                 <td>视频名称：</td>
-                <td><input type="text"/></td>
+                <td><input type='text'/></td>
             </tr>
-            <tr style="height: 40px">
+            <tr style='height: 40px'>
                 <td>选择视频：</td>
                 <td>
-                    <input type="file" name="fileToUpload" id="fileToUpload" onchange="fileSelected();"/>
+                    <input type='file' name='fileToUpload' id='fileToUpload' onchange='fileSelected();'/>
                 </td>
             </tr>
-            <tr style="height: 40px">
+            <tr style='height: 40px'>
                 <td>选择视频地区：</td>
-                <td><select id="s1_text1_bold">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select></td>
+                <td><select id='swf_area' style='width: 160px'>";
+
+                        for($i=0;$i<sizeof($list);$i++)
+                        {
+                            $name=$list[i]["name"];
+                            echo $name;
+                            if($i==0)
+                                echo "<option value='$name' selected=''>".$name."</option>";
+                            else
+                                echo "<option value='$name'>".$name."</option>";
+                        }
+                   echo "</select></td>
             </tr>
-            <tr style="height: 40px">
+            <tr style='height: 40px'>
                 <td>视频描述：</td>
                 <td>
-                    <textarea rows="4" cols="50" name="comment" onfocus="if(value=='请在此处输入描述...') {value=''}" onblur="if(value=='') {value='请在此处输入描述...'}">请在此处输入描述...</textarea>
+                    <textarea rows='4' cols='50' name='comment' onfocus='if(value=='请在此处输入描述...') {value=''}' onblur='if(value=='') {value='请在此处输入描述...'}'>请在此处输入描述...</textarea>
                 </td>
             </tr>
             <tr>
-                <td colspan="2">
-                <td colspan="2" align="center"><input type="button" value="确定"/></td>
+                <td colspan='2'>
+                <td colspan='2' align='center'><input type='button' value='确定'/></td>
                 </td>
             </tr>
+               ";
+            }else{
+
+                echo "
+                    <tr style='height: 40px'>
+                <td>视频名称：</td>
+                <td><input type='text'/></td>
+            </tr>
+            <tr style='height: 40px'>
+                <td>选择视频地区：</td>
+                <td><select id='s1_text1_bold'>
+                        <option value='0' selected=''>0</option>
+                        <option value='1'>1</option>
+                    </select></td>
+            </tr>
+            <tr style='height: 40px'>
+                <td>视频描述：</td>
+                <td>
+                    <textarea rows='4' cols='50' name='comment' onfocus='if(value=='请在此处输入描述...') {value=''}' onblur='if(value=='') {value='请在此处输入描述...'}'>请在此处输入描述...</textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan='2'>
+                <td colspan='2' align='center'><input type='button' value='确定'/></td>
+                </td>
+            </tr>
+               ";
+            }
+
+            ?>
+
         </table>
     </form>
     <br />
