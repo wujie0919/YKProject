@@ -5,7 +5,7 @@
  * Date: 15/5/11
  * Time: 下午3:54
  */
-//error_reporting(0);
+error_reporting(0);
 require '../Config/DataBase.Class.php';
 require '../Common/Tools.php';
 
@@ -14,32 +14,32 @@ $iden=$_POST["iden"];
 $token=$_POST["token"];
 $status=$_POST["status"];
 $fromSource=$_POST["fromSource"];
-
+$OSType=$_POST["OSType"];
 $type=$_POST["type"];
 
-$tool= new Tools();
-$udate=$tool->getCommonId();
-//$pass=$_POST["pass"];
-//$sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,froms,iden,passw)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden','$pass')";
-//$data=new DataBase();
-//$rs=$data->insertAction($sql);
-//$json = array();
-//$json["success"]=$rs;
 
 //return;
+$data=new DataBase();
+$jsonRs = array();
 if($type=="add")
 {
-    $pass=$_POST["pass"];
-    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,fromSource,iden,passw)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden','$pass')";
+    $tool= new Tools();
+    $udate=$tool->getCommonId();
+    $pass=md5($_POST["pass"]);
+    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,fromSource,iden,passw,OSType)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden','$pass','$OSType')";
+    $rs=$data->insertAction($sql);
 }
 else
-    $sql="INSERT INTO YK_User(userId,nickName,CreateDate,token,userStatus,fromSource,iden)VALUES('$udate','$nickname','$udate','$token','$status','$fromSource','$iden')";
-$data=new DataBase();
-$rs=$data->insertAction($sql);
-
-$json = array();
-$json["success"]=$rs;
-echo json_encode($json);
+{
+    $userId=$_POST["id"];
+    $sql="UPDATE YK_User SET nickName='$nickname',token='$token',userStatus='$status',fromSource='$fromSource',iden='$iden',OSType='$OSType' WHERE userId='$userId'";
+    $rs=$data->updateAction($sql);
+}
+if($rs=='1')
+    $jsonRs['success']='1';
+else
+    $jsonRs['success']='0';
+echo json_encode($jsonRs);
 
 
 

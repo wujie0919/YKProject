@@ -113,7 +113,7 @@ if(!$_SESSION["Login"])
             $total=sizeof($list);
 
             $page=isset($_POST['page'])?intval($_POST['page']):1;//这句就是获取page=18中的page的值，假如不存在page，那么页数就是1。
-            $num=1;                                     //每页显示条数
+            $num=10;                                     //每页显示条数
             $url = end(explode('/',$_SERVER['PHP_SELF'])); // 获取当前访问的文件名
 
             //页码计算
@@ -149,7 +149,7 @@ if(!$_SESSION["Login"])
             else
             {
                 $endData= array();
-                $limtSql="select * from YK_User limit $offset,$num";  //获取相应页数所需要显示的数据";
+                $limtSql="select * from YK_User ORDER  BY CreateDate DESC limit $offset,$num";  //获取相应页数所需要显示的数据";
                 $endData=json_decode($data->selectAction($limtSql),true);
                 foreach($endData as $user)
                 {
