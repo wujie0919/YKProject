@@ -188,7 +188,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         echo "<td>正常</td>";
                     else
                         echo "<td>被封</td>";
-                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='deleteVideo($videoId)'>删除</a></td>";
+                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a> <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteVideo($videoId)'>删除</a></td>";
                     echo  "</tr>";
                 }
                 echo "<tr><td colspan='8'>".$pagenav."</td></tr>";

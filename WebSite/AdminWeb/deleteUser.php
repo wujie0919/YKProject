@@ -8,6 +8,7 @@
 error_reporting(0);
 require '../Config/DataBase.Class.php';
 $userId=$_POST["uid"];
+$jsonRs= array();
 $data = new DataBase();
 $sql="UPDATE YK_User SET userStatus='1' WHERE userId='$userId'";
 $rs = $data->updateAction($sql);

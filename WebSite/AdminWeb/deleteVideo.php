@@ -8,6 +8,7 @@
 error_reporting(0);
 require '../Config/DataBase.Class.php';
 $vid=$_POST["vid"];
+$jsonRs= array();
 $data = new DataBase();
 $sql="UPDATE YK_Video SET videoStatus='1' WHERE videoId='$vid'";
 $rs = $data->updateAction($sql);

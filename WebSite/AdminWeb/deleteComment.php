@@ -8,6 +8,7 @@
 error_reporting(0);
 require '../Config/DataBase.Class.php';
 $cid=$_POST["cid"];
+$jsonRs= array();
 $data = new DataBase();
 $sql="DELETE FROM YK_Comment WHERE CommentId='$cid'";
 $rs = $data->updateAction($sql);

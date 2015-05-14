@@ -8,4 +8,4 @@
 7、videoDes 视频描述
 8、videoStatus 视频状态
  */
- CREATE TABLE  if not exists YK_Video(videoId VARCHAR (20) PRIMARY KEY ,videoAddress VARCHAR (10),videoName VARCHAR (50),videowner VARCHAR (20),uploadDate VARCHAR (20),videoDesc VARCHAR (200),videoStatus VARCHAR (2))
+ CREATE TABLE  if not exists YK_Video(videoId VARCHAR (20) PRIMARY KEY ,videoAddress VARCHAR (10),videoName VARCHAR (50),videowner VARCHAR (20),uploadDate VARCHAR (20),videoDesc VARCHAR (200),videoStatus VARCHAR (2),videoArea VARCHAR (10))
