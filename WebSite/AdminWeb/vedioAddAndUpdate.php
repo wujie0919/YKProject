@@ -160,7 +160,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             </tr>
             <tr style='height: 40px'>
                 <td>选择视频地区：</td>
-                <td><select id='swf_area' style='width: 160px'>";
+                <td><select id='swf_area' name='select' style='width: 160px'>";
                     foreach($list as $areaName)
                     {
                         $name=$areaName['name'];
@@ -258,17 +258,6 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
     <br />
 
 </div>
-
-<?php
-    if(!empty($_POST['okButton'])){ //点击提交按钮后才执行
-//               $sql = "select * from 数据库表名 where 条件";//从数据库中查询数据
-//        $query = mysql_query($sql);
-//        $row = mysql_fetch_assoc($query);//数据结果集
-    }
-echo "123";
-return;
-
-?>
 
 
 <?php
