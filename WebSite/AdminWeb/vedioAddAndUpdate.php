@@ -14,11 +14,7 @@
     <script src="../Resources/js/admin.js"></script>
     <link type="image/x-icon" href="/favicon.ico" rel="shortcut icon" />
     <link href="/favicon.ico" rel="bookmark icon" />
-    <style type="text/css">
-        .txt{ height:22px; border:1px solid #cdcdcd; width:180px;}
-        .btn{ background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;}
-        .file{ position:absolute; top:0; right:80px; height:24px; filter:alpha(opacity:0);opacity: 0;width:260px }
-    </style>
+
 </head>
 
 <body>
@@ -120,8 +116,25 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
     }
 </script>
 
+
 <div class="admin">
-    <form method="post">
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <script>
+            function changeText(txt)
+            {
+
+                var info=$("#desc").val();
+                if(txt==1001)
+                {
+                    if(info=="请在此处输入描述...")
+                        $("#desc").text("");
+                }else
+                {
+
+                    if(info=="")$("#desc").text("请在此处输入描述...");
+                }
+            }
+        </script>
         <table>
             <?php
             error_reporting(0);
@@ -136,7 +149,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 echo "
                     <tr style='height: 40px'>
                 <td>视频名称：</td>
-                <td><input type='text'/></td>
+                <td><input type='text' id='videoName' name='videoName' /></td>
             </tr>
             <tr style='height: 40px'>
                 <td>选择视频：</td>
@@ -147,26 +160,26 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <tr style='height: 40px'>
                 <td>选择视频地区：</td>
                 <td><select id='swf_area' style='width: 160px'>";
-                    for($i=0;$i<sizeof($list);$i++)
-                        {
-                            $name=$list[i]["name"];
-                            echo $name;
-                            if($i==0)
-                                echo "<option value='$name' selected=''>".$name."</option>";
-                            else
-                                echo "<option value='$name'>".$name."</option>";
-                        }
+                    foreach($list as $areaName)
+                    {
+                        $name=$areaName['name'];
+                        if($areaName["name"]=="北京")
+                            echo "<option value='$name' selected=''>".$name."</option>";
+                        else
+                            echo "<option value='$name'>".$name."</option>";
+
+                    }
                    echo "</select></td>
             </tr>
             <tr style='height: 40px'>
                 <td>视频描述：</td>
                 <td>
-                    <textarea rows='4' cols='50' name='comment' onfocus='if(value=='请在此处输入描述...') {value=''}' onblur='if(value=='') {value='请在此处输入描述...'}'>请在此处输入描述...</textarea>
+                    <textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)'>请在此处输入描述...</textarea>
                 </td>
             </tr>
             <tr>
                 <td colspan='2'>
-                <td colspan='2' align='center'><input type='button' value='确定'/></td>
+                <td colspan='2' align='center'><input type='submit' value='确定' onclick='insertVedio()'/></td>
                 </td>
             </tr>
                ";
@@ -175,24 +188,31 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 echo "
                     <tr style='height: 40px'>
                 <td>视频名称：</td>
-                <td><input type='text'/></td>
+                <td><input type='text' name='videoName'/></td>
             </tr>
             <tr style='height: 40px'>
                 <td>选择视频地区：</td>
-                <td><select id='s1_text1_bold'>
-                        <option value='0' selected=''>0</option>
-                        <option value='1'>1</option>
-                    </select></td>
+                <td><select id='swf_area' style='width: 160px'>";
+                foreach($list as $areaName)
+                {
+                    $name=$areaName['name'];
+                    if($areaName["name"]=="北京")
+                        echo "<option value='$name' selected=''>".$name."</option>";
+                    else
+                        echo "<option value='$name'>".$name."</option>";
+
+                }
+                echo "</select></td>
             </tr>
             <tr style='height: 40px'>
                 <td>视频描述：</td>
                 <td>
-                    <textarea rows='4' cols='50' name='comment' onfocus='if(value=='请在此处输入描述...') {value=''}' onblur='if(value=='') {value='请在此处输入描述...'}'>请在此处输入描述...</textarea>
+                    <textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)'>请在此处输入描述...</textarea>
                 </td>
             </tr>
             <tr>
                 <td colspan='2'>
-                <td colspan='2' align='center'><input type='button' value='确定'/></td>
+                <td colspan='2' align='center'><input type='submit' name='submit' value='确定' onclick='updateVedio(1002)'/></td>
                 </td>
             </tr>
                ";
@@ -201,11 +221,41 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
           ?>
 
         </table>
+        <script type="text/javascript" language="javascript">
+            function insertVedio()
+            {
+//                var vedioName=$("#vedioName").val();
+//                var desc=$("#desc").val();
+//                var city=$("#swf_area").val();
+//                var filePath=$("#fileToUpload").val();
+//                if(filePath.length<=0)
+//                {
+//                    alert("请选择上传文件！");
+//                    return;
+//                }
+//                if(vedioName.length<=0)
+//                {
+//                    alert("视频名不能为空！");
+//                    return;
+//                }
+
+
+            }
+        </script>
     </form>
     <br />
+
 </div>
+<?php
+require '../Config/DataBase.Class.php';
+require '../Common/Tools.php';
 
-
+$vedioName=$_POST["videoName"];
+$desc=$_POST["desc"];
+$city=$_POST["city"];
+$opType=$_POST["type"];
+echo "用户名: $vedioName <br>\n";
+?>
 
 
 </body>

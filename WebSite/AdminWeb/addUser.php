@@ -295,6 +295,12 @@ if(!$_SESSION["Login"])
 <script>
     function updateData(userId){
         var name=$("#nickname").val();
+        if(name.length<=0)
+        {
+            alert("昵称不能为空！");
+            return;
+        }
+
         var iden=$("#iden").val();
         var token=$("#token").val();
         var status=$("input[name='status']:checked").val();
@@ -325,6 +331,12 @@ if(!$_SESSION["Login"])
         var iden=$("#iden").val();
         var token=$("#token").val();
         var pass =$("#pass").val();
+        if(name.length<=0 || pass.length<=0)
+        {
+            alert("昵称或者密码不能为空！");
+            return;
+        }
+
         var status=$("input[name='status']:checked").val();
         var fromSource=$("input[name='fs']:checked").val();
         var OSType=$("#OSType").val();

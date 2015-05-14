@@ -4,7 +4,7 @@ CREATE TABLE swf_area
     parent_id INT NOT NULL DEFAULT 0,
     name VARCHAR(50) NOT NULL,
     sort INT NOT NULL DEFAULT 0
-)
+)ENGINE=INNODB DEFAULT CHARSET=UTF8;
 
 /****insert****/
 INSERT INTO swf_area VALUES(0100, 0, '安徽', 1);

@@ -103,9 +103,16 @@ if(!$_SESSION["Login"])
                 <input type="button" class="button button-small border-yellow" value="批量删除" />
 <!--                <input type="button" class="button button-small border-blue" value="被封用户" />-->
             </div>
+            <script>
+                function deleteUser(uinfo)
+                {
+                    alert(uinfo);
+                }
+            </script>
             <?php
             error_reporting(0);
             require '../Config/DataBase.Class.php';
+            require '../Common/Tools.php';
             $data=new DataBase();
             $list=array();
             $sql="SELECT * FROM YK_User";
@@ -153,13 +160,15 @@ if(!$_SESSION["Login"])
                 $endData= array();
                 $limtSql="select * from YK_User ORDER  BY CreateDate DESC limit $offset,$num";  //获取相应页数所需要显示的数据";
                 $endData=json_decode($data->selectAction($limtSql),true);
+                $tool= new Tools();
                 foreach($endData as $user)
                 {
+                    $userId=$user['userId'];
                     echo "<tr>";
-                    echo "<td><input type='checkbox' name='id' value='".$user['userId']."' /></td>";
+//                    echo "<td><input type='checkbox' name='id' value='".$userId."' /></td>";
                     echo "<td>".$user['userId']."</td>";
                     echo "<td>".$user['nickName']."</td>";
-                    echo "<td>".$user['CreateDate']."</td>";
+                    echo "<td>".$tool->microtime_format('Y-m-d H:i',$user['CreateDate'])."</td>";
                     echo "<td>".$user['token']."</td>";
                     echo "<td>".$user['OSType']."</td>";
                     if($user['userStatus']=="0")
@@ -175,7 +184,9 @@ if(!$_SESSION["Login"])
                         echo "<td>微信</td>";
                     elseif($fromSource=="3")
                         echo "<td>QQ</td>";
-                    echo "<td><a class='button border-blue button-little' href='addUser.php?id=".$user['userId']."&type=update'>修改</a> <a class='button border-yellow button-little' href='#' onclick='{if(confirm('确认删除?')){return true;}return false;}'>删除</a></td>";
+                    echo "<td><a class='button border-blue button-little' href='addUser.php?id=".$userId."&type=update'>修改</a>";
+                    echo " <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteUser($userId)'>封禁</a>
+                    </td>";
                     echo  "</tr>";
                 }
                 echo "<tr><td colspan='9'>".$pagenav."</td></tr>";
@@ -184,18 +195,6 @@ if(!$_SESSION["Login"])
             echo "</table>";
             echo "</div>";
             ?>
-<!---->
-<!--            <div class="panel-foot text-center">-->
-<!--                <ul class="pagination"><li><a href="#">上一页</a></li></ul>-->
-<!--                <ul class="pagination pagination-group">-->
-<!--                    <li><a href="#">1</a></li>-->
-<!--                    <li class="active"><a href="#">2</a></li>-->
-<!--                    <li><a href="#">3</a></li>-->
-<!--                    <li><a href="#">4</a></li>-->
-<!--                    <li><a href="#">5</a></li>-->
-<!--                </ul>-->
-<!--                <ul class="pagination"><li><a href="#">下一页</a></li></ul>-->
-<!--            </div>-->
         </div>
     </form>
     <br />
