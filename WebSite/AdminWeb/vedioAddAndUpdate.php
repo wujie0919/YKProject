@@ -101,7 +101,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 </div>
 <script type="text/javascript">
     function fileSelected() {
-        var file = document.getElementById('fileToUpload').files[0];
+        var file = document.getElementById('Filedata').files[0];
         if (file) {
             var fileSize = 0;
             if (file.size > 1024 * 1024)
@@ -118,7 +118,8 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 
 
 <div class="admin">
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+    <form method='POST' action='upload.php' enctype='multipart/form-data'>
+<!--    <form method="post" action="--><?php //echo $_SERVER['PHP_SELF']; ?><!--">-->
         <script>
             function changeText(txt)
             {
@@ -154,7 +155,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <tr style='height: 40px'>
                 <td>选择视频：</td>
                 <td>
-                    <input type='file' name='fileToUpload' id='fileToUpload' onchange='fileSelected();'/>
+                    <input type='file' name='Filedata' id='Filedata'  onchange='fileSelected();'/>
                 </td>
             </tr>
             <tr style='height: 40px'>
@@ -179,7 +180,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             </tr>
             <tr>
                 <td colspan='2'>
-                <td colspan='2' align='center'><input type='submit' value='确定' onclick='insertVedio()'/></td>
+                <td colspan='2' align='center'><input type='submit'  value='确定''/></td>
                 </td>
             </tr>
                ";
@@ -188,7 +189,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 echo "
                     <tr style='height: 40px'>
                 <td>视频名称：</td>
-                <td><input type='text' name='videoName'/></td>
+                <td><input type='text' name='videoName' name='Filedata' id='Filedata' /></td>
             </tr>
             <tr style='height: 40px'>
                 <td>选择视频地区：</td>
@@ -212,7 +213,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             </tr>
             <tr>
                 <td colspan='2'>
-                <td colspan='2' align='center'><input type='submit' name='submit' value='确定' onclick='updateVedio(1002)'/></td>
+                <td colspan='2' align='center'><input type='submit'  name='submit' value='确定' onclick='updateVedio(1002)'/></td>
                 </td>
             </tr>
                ";
@@ -222,12 +223,19 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 
         </table>
         <script type="text/javascript" language="javascript">
+
+            function updateVedio(var v){
+                alert("12");
+            }
+
             function insertVedio()
             {
+                alert("123");
 //                var vedioName=$("#vedioName").val();
 //                var desc=$("#desc").val();
 //                var city=$("#swf_area").val();
 //                var filePath=$("#fileToUpload").val();
+//                aler
 //                if(filePath.length<=0)
 //                {
 //                    alert("请选择上传文件！");
@@ -238,7 +246,11 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 //                    alert("视频名不能为空！");
 //                    return;
 //                }
-
+//                $.ajax(
+//
+//
+//                );
+                // filepath
 
             }
         </script>
@@ -246,17 +258,28 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
     <br />
 
 </div>
+
+<?php
+    if(!empty($_POST['okButton'])){ //点击提交按钮后才执行
+//               $sql = "select * from 数据库表名 where 条件";//从数据库中查询数据
+//        $query = mysql_query($sql);
+//        $row = mysql_fetch_assoc($query);//数据结果集
+    }
+echo "123";
+return;
+
+?>
+
+
 <?php
 require '../Config/DataBase.Class.php';
 require '../Common/Tools.php';
-
 $vedioName=$_POST["videoName"];
 $desc=$_POST["desc"];
 $city=$_POST["city"];
 $opType=$_POST["type"];
 echo "用户名: $vedioName <br>\n";
 ?>
-
 
 </body>
 </html>
