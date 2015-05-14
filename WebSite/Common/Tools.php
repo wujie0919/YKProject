@@ -17,7 +17,7 @@ class Tools
 
     function microtime_format($tag, $time)
     {
-        $time=$time/1000;
+        $time=ceil($time/1000);
         list($usec, $sec) = explode(".", $time);
         $date = date($tag,$usec);
         return str_replace('x', $sec, $date);

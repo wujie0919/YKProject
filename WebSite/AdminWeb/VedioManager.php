@@ -96,14 +96,26 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
         <div class="panel admin-panel">
             <div class="panel-head"><strong>视频列表</strong></div>
             <div class="padding border-bottom">
-                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+<!--                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />-->
                 <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='vedioAddAndUpdate.php?type=add'"/>
-                <input type="button" class="button button-small border-yellow" value="批量删除" />
+<!--                <input type="button" class="button button-small border-yellow" value="批量删除" />-->
 <!--                <input type="button" class="button button-small border-blue" value="回收站" />-->
             </div>
+            <script>
+                function deleteVideo()
+                {
+                    if(confirm('确认删除?'))
+                    {
+
+                        return true;
+                    }
+                    return false;
+                }
+            </script>
             <?php
             error_reporting(0);
             require '../Config/DataBase.Class.php';
+            require '../Common/Tools.php';
             $data=new DataBase();
             $list=array();
             $sql="SELECT * FROM YK_Video";
@@ -143,30 +155,33 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 
             echo "<div id='msg'>";
             echo "<table class='table table-hover'>
-                <tr><th width='45'>选择</th><th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建账号时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
+                <tr><th width='60'>ID</th><th width='100'>视频地址</th><th width='100'>视频名称</th><th width='100'>上传者</th><th width='100'>上传时间</th><th width='100'>视频描述</th><th width='100'>视频状态</th><th width='100'>操作</th></tr>";
             if($pagenum==0)
                 echo "<tr><td colspan='9' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
             else
             {
                 $endData= array();
-                $limtSql="select * from YK_Video limit $offset,$num";  //获取相应页数所需要显示的数据";
+                $tool = new Tools();
+                $limtSql="select videoId,videoAddress,videoName,(select nickname from YK_User as u where u.userId=videowner) as nickname,uploadDate,videoDesc,videoStatus from YK_Video ORDER BY uploadDate DESC limit $offset,$num";  //获取相应页数所需要显示的数据";
                 $endData=json_decode($data->selectAction($limtSql),true);
-                foreach($endData as $user)
+                foreach($endData as $video)
                 {
                     echo "<tr>";
-                    echo "<td><input type='checkbox' name='id' value='".$user['userId']."' /></td>";
-                    echo "<td>".$user['userId']."</td>";
-                    echo "<td>".$user['nickName']."</td>";
-                    echo "<td>".$user['CreateDate']."</td>";
-                    echo "<td>".$user['token']."</td>";
-                    echo "<td>iOS</td>";
-                    echo "<td>".$user['userStatus']."</td>";
-                    echo "<td>".$user['fromSource']."</td>";
-//                    echo "<td>".$user['iden']."</td>";
-                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='{if(confirm('确认删除?')){return true;}return false;}'>删除</a></td>";
+//                    echo "<td><input type='checkbox' name='id' value='".$user['userId']."' /></td>";
+                    echo "<td>".$video['videoId']."</td>";
+                    echo "<td>".$video['videoAddress']."</td>";
+                    echo "<td>".$video['videoName']."</td>";
+                    echo "<td>".$video['nickname']."</td>";
+                    echo "<td>".$tool->microtime_format('Y-m-d H:i',$video['uploadDate'])."</td>";
+                    echo "<td>".$video['videoDesc']."</td>";
+                    if($video['videoStatus']=="0")
+                        echo "<td>正常</td>";
+                    else
+                        echo "<td>被封</td>";
+                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='deleteVideo()'>删除</a></td>";
                     echo  "</tr>";
                 }
-                echo "<tr><td colspan='9'>".$pagenav."</td></tr>";
+                echo "<tr><td colspan='8'>".$pagenav."</td></tr>";
                 die();
             }
             echo "</table>";

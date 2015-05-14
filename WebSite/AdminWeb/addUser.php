@@ -341,7 +341,6 @@ if(!$_SESSION["Login"])
         var fromSource=$("input[name='fs']:checked").val();
         var OSType=$("#OSType").val();
         var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&pass="+pass+"&type=add"+"&OSType="+OSType;
-        alert(par);
         $.ajax({
             type:"POST",
             url:"./addAndUpdateDao.php",

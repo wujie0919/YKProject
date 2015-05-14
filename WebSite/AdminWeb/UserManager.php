@@ -98,19 +98,36 @@ if(!$_SESSION["Login"])
         <div class="panel admin-panel">
             <div class="panel-head"><strong>用户列表</strong></div>
             <div class="padding border-bottom">
-                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
+<!--                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />-->
                 <input type="button" class="button button-small border-green" value="添加用户" onClick="location.href='addUser.php?type=add'"/>
-                <input type="button" class="button button-small border-yellow" value="批量删除" />
+<!--                <input type="button" class="button button-small border-yellow" value="批量删除" />-->
 <!--                <input type="button" class="button button-small border-blue" value="被封用户" />-->
             </div>
+
             <script>
                 function deleteUser(uinfo)
                 {
-                    alert(uinfo);
+                    var par="uid="+uinfo;
+                    alert(par);
+                    $.ajax({
+                        type:"POST",
+                        url:"./deleteUser.php",
+                        data:par,
+                        success:function(msg) {
+                            var obj = JSON.parse(msg);
+                            if(obj['success'] == '1'){
+                                alert('操作成功');
+                                location.reload();
+                            }else{
+                                alert('操作失败');
+                            }
+                        }
+                    })
                 }
             </script>
             <?php
             error_reporting(0);
+//            echo date('Y-m-d H:i:s') ;
             require '../Config/DataBase.Class.php';
             require '../Common/Tools.php';
             $data=new DataBase();
@@ -149,10 +166,12 @@ if(!$_SESSION["Login"])
                 Echo "Error : Can Not Found The page ".$page;
                 Exit;
             }
-
+//    <th width='45'>选择</th>
             echo "<div id='msg'>";
             echo "<table class='table table-hover'>
-                <tr><th width='45'>选择</th><th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
+                <tr>
+
+                <th width='60'>ID</th><th width='100'>昵称</th><th width='100'>创建时间</th><th width='100'>Token</th><th width='100'>终端类型</th><th width='100'>用户状态</th><th width='100'>来源</th><th width='100'>操作</th></tr>";
             if($pagenum<=0)
                 echo "<tr><td colspan='9' align='center'><span style='color: #ee3333'>无数据</span></td> </tr>";
             else
@@ -165,7 +184,7 @@ if(!$_SESSION["Login"])
                 {
                     $userId=$user['userId'];
                     echo "<tr>";
-//                    echo "<td><input type='checkbox' name='id' value='".$userId."' /></td>";
+
                     echo "<td>".$user['userId']."</td>";
                     echo "<td>".$user['nickName']."</td>";
                     echo "<td>".$tool->microtime_format('Y-m-d H:i',$user['CreateDate'])."</td>";
@@ -184,12 +203,14 @@ if(!$_SESSION["Login"])
                         echo "<td>微信</td>";
                     elseif($fromSource=="3")
                         echo "<td>QQ</td>";
+                    else
+                        echo "<td>其他</td>";
                     echo "<td><a class='button border-blue button-little' href='addUser.php?id=".$userId."&type=update'>修改</a>";
                     echo " <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteUser($userId)'>封禁</a>
                     </td>";
                     echo  "</tr>";
                 }
-                echo "<tr><td colspan='9'>".$pagenav."</td></tr>";
+                echo "<tr><td colspan='8'>".$pagenav."</td></tr>";
                 die();
             }
             echo "</table>";
