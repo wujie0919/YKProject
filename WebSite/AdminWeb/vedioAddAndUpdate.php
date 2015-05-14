@@ -39,7 +39,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
     <div class="mainer">
         <div class="admin-navbar">
             <span class="float-right">
-            	<a class="button button-little bg-main" href="#">前台首页</a>
+<!--            	<a class="button button-little bg-main" href="#">前台首页</a>-->
                 <a class="button button-little bg-yellow" href="login.html">注销登录</a>
             </span>
             <ul class="nav nav-inline admin-nav">
@@ -59,7 +59,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 <li class="active"><a href="VedioManager.php" class="icon-file-text"> 视频</a>
                     <ul>
                         <!--                        <li><a href="#">添加内容</a></li>-->
-                        <li class="active"><a href="#">视频管理</a></li>
+<!--                        <li class="active"><a href="#">视频管理</a></li>-->
                         <!--                        <li><a href="#">分类设置</a></li>-->
                         <!--                        <li></li><a href="#">链接管理</a></li>-->
                     </ul>
@@ -84,7 +84,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             </span>
             <ul class="bread">
                 <li><a href="UserManager.php" class="icon-home"> 开始</a></li>
-                <li><a href="VedioManager.php">视频管理</a></li>
+<!--                <li><a href="VedioManager.php">视频管理</a></li>-->
                 <?php
                 error_reporting(0);
                 $type=$_GET["type"];
