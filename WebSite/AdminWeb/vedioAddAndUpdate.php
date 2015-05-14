@@ -136,7 +136,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 }
             }
         </script>
-        <table>
+
             <?php
             error_reporting(0);
             require '../Config/DataBase.Class.php';
@@ -147,7 +147,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             $type=$_GET["type"];
             if($type=="add")
             {
-                echo "
+                echo "<table>
                     <tr style='height: 40px'>
                 <td>视频名称：</td>
                 <td><input type='text' id='videoName' name='videoName' /></td>
@@ -216,12 +216,12 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 <td colspan='2' align='center'><input type='submit'  name='submit' value='确定' onclick='updateVedio(1002)'/></td>
                 </td>
             </tr>
-               ";
+               </table>";
             }
 
           ?>
 
-        </table>
+
         <script type="text/javascript" language="javascript">
 
             function updateVedio(var v){

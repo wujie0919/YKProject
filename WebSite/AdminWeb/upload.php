@@ -67,7 +67,7 @@ Notes:
 
 //echo "Upload: " . $_FILES[$upload_name]["tmp_name"] . "<br />";
 	$max_file_size_in_bytes = 2147483647;				// 2GB in bytes
-	$extension_whitelist = array("mp4", "rmvb","JPG");	// Allowed file extensions
+	$extension_whitelist = array("mp4", "rmvb","JPG","PNG");	// Allowed file extensions
 	$valid_chars_regex = '.A-Z0-9_ !@#$%^&()+={}\[\]\',~`-';				// Characters allowed in the file name (in a Regular Expression format)
 	
 // Other variables	

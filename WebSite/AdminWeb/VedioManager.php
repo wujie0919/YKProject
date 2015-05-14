@@ -102,14 +102,23 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 <!--                <input type="button" class="button button-small border-blue" value="回收站" />-->
             </div>
             <script>
-                function deleteVideo()
+                function deleteVideo(msg)
                 {
-                    if(confirm('确认删除?'))
-                    {
-
-                        return true;
-                    }
-                    return false;
+                    var par="vid="+msg;
+                    $.ajax({
+                        type:"POST",
+                        url:"./deleteVideo.php",
+                        data:par,
+                        success:function(msg) {
+                            var obj = JSON.parse(msg);
+                            if(obj['success'] == '1'){
+                                alert('操作成功');
+                                location.reload();
+                            }else{
+                                alert('操作失败');
+                            }
+                        }
+                    })
                 }
             </script>
             <?php
@@ -166,9 +175,10 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 $endData=json_decode($data->selectAction($limtSql),true);
                 foreach($endData as $video)
                 {
+                    $videoId=$video["videoId"];
                     echo "<tr>";
 //                    echo "<td><input type='checkbox' name='id' value='".$user['userId']."' /></td>";
-                    echo "<td>".$video['videoId']."</td>";
+                    echo "<td>".$videoId."</td>";
                     echo "<td>".$video['videoAddress']."</td>";
                     echo "<td>".$video['videoName']."</td>";
                     echo "<td>".$video['nickname']."</td>";
@@ -178,7 +188,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         echo "<td>正常</td>";
                     else
                         echo "<td>被封</td>";
-                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='deleteVideo()'>删除</a></td>";
+                    echo "<td><a class='button border-blue button-little' href='#'>修改</a> <a class='button border-yellow button-little' href='#' onclick='deleteVideo($videoId)'>删除</a></td>";
                     echo  "</tr>";
                 }
                 echo "<tr><td colspan='8'>".$pagenav."</td></tr>";
