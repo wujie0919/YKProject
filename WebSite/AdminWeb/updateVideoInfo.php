@@ -172,8 +172,8 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <tr style='height: 40px'>
                 <td>视频描述：</td>
                 <td>";
-                    if(!empty($comment['videoName']))
-                        echo "<textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)'>".$comment['videoName']."</textarea>";
+                    if(!empty($comment['videoDesc']))
+                        echo "<textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)'>".$comment['videoDesc']."</textarea>";
                     else
                         echo "<textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)' >请在此处输入描述...</textarea>";
                 echo "</td>
