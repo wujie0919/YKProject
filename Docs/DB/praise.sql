@@ -1,1 +1,1 @@
-CREATE TABLE  if not exists YK_Praise(praiseId VARCHAR (20) PRIMARY KEY ,userId VARCHAR (20),videoId VARCHAR (20));
+CREATE TABLE  if not exists YK_Praise(praiseId int not null auto_increment PRIMARY KEY ,userId VARCHAR (20),videoId VARCHAR (20));
