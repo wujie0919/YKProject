@@ -171,7 +171,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             $list= json_decode($data->selectAction($sql),true);
             $vList=array();
             $vId=$_GET["vid"];
-            $vsql="SELECT * FROM YK_Comment WHERE CommentId='$vId'";
+            $vsql="SELECT * FROM YK_Video WHERE videoId='$vId'";
             $vList=json_decode($data->selectAction($vsql),true);
             foreach($vList as $comment)
             {
