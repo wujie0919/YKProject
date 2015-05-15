@@ -22,4 +22,9 @@ class Tools
         $date = date($tag,$usec);
         return str_replace('x', $sec, $date);
     }
+
+    function getFileType($filename) {
+        $exten = explode('.', $filename);
+        return end($exten);
+    }
 }

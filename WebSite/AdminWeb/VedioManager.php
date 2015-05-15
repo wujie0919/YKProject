@@ -98,7 +98,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <div class="padding border-bottom">
 <!--                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />-->
                 <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='vedioAddAndUpdate.php?type=add'"/>
-                <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='updateVideoInfo.php'"/>
+<!--                <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='updateVideoInfo.php'"/>-->
 <!--                <input type="button" class="button button-small border-yellow" value="批量删除" />-->
 <!--                <input type="button" class="button button-small border-blue" value="回收站" />-->
             </div>
@@ -207,7 +207,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         echo "<td>正常</td>";
                     else
                         echo "<td>被封</td>";
-                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a>";
+                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a> ";
                     if($video['videoStatus']=="0")
                         echo "<a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteVideo($videoId)'>封禁</a></td>";
                     else
