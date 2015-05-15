@@ -42,7 +42,11 @@ class DataBase{
 
     public function  insertAction($sql){
         $success = $this ->dbhelper->insert($sql,null);
-        return $this->isSuccess($success);
+        if(empty($success)) {
+            return '0';
+        }else{
+            return '1';
+        }
     }
 
     public  function isSuccess($success){
@@ -51,10 +55,6 @@ class DataBase{
         }else{
             return '0';
         }
-//            return "失败";
-//        }else{
-//            return "成功";
-//        }
     }
 }
 

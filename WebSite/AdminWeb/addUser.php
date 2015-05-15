@@ -341,14 +341,13 @@ if(!$_SESSION["Login"])
         var fromSource=$("input[name='fs']:checked").val();
         var OSType=$("#OSType").val();
         var par = "nickname="+name+"&iden="+iden+"&token="+token+"&status="+status+"&fromSource="+fromSource+"&pass="+pass+"&type=add"+"&OSType="+OSType;
-        alert(par);
+//        alert(par);
         $.ajax({
             type:"POST",
             url:"./addAndUpdateDao.php",
             data:par,
             success:function(msg) {
                 var obj = JSON.parse(msg);
-                alert(msg);
                 if(obj['success'] == '1'){
                     alert('添加成功');
                 }else{
