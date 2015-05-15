@@ -15,10 +15,11 @@ $vid=$_POST["vid"];
 
 $data= new DataBase();
 $sql="UPDATE YK_Video SET videoName='$videoName',videoDesc='$desc',videoArea='$swf_area' FROM YK_Video WHERE videoId='$vid'";
-$jsonRs= array();
+
 $rs=$data->updateAction($sql);
 if($rs=='1')
     $jsonRs['success']='1';
 else
     $jsonRs['success']='0';
+
 echo json_encode($jsonRs);

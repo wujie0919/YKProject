@@ -11,9 +11,7 @@ $cid=$_POST["cid"];
 $jsonRs= array();
 $data = new DataBase();
 $sql="DELETE FROM YK_Comment WHERE CommentId='$cid'";
-$rs = $data->updateAction($sql);
-if($rs=='1')
-    $jsonRs['success']='1';
-else
-    $jsonRs['success']='0';
+$rs= $data->updateAction($sql);
+$jsonRs['success']=$rs;
+
 echo json_encode($jsonRs);

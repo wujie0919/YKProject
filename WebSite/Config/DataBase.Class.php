@@ -7,12 +7,17 @@
  */
 
 require '../Config/dbhelper.class.php';
-//
+//test
 define(DB_HOST,'127.0.0.1:3306');
 define(DB_USER,'root');
 define(DB_PASS,'root');
 define(DB_DATABASENAME,'YKDB');
-define(DB_TABLENAME,'student');
+//define(DB_TABLENAME,'student');
+
+//define(DB_HOST,'bdm123604245.my3w.com:3306');
+//define(DB_USER,'bdm123604245');
+//define(DB_PASS,'goodpenyou2015');
+//define(DB_DATABASENAME,'bdm123604245_db');
 
 class DataBase{
     public $dbhelper;

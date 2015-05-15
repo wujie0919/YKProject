@@ -98,6 +98,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <div class="padding border-bottom">
 <!--                <input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />-->
                 <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='vedioAddAndUpdate.php?type=add'"/>
+                <input type="button" class="button button-small border-green" value="添加视频"  onClick="location.href='updateVideoInfo.php'"/>
 <!--                <input type="button" class="button button-small border-yellow" value="批量删除" />-->
 <!--                <input type="button" class="button button-small border-blue" value="回收站" />-->
             </div>
@@ -132,7 +133,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             $total=sizeof($list);
 
             $page=isset($_POST['page'])?intval($_POST['page']):1;//这句就是获取page=18中的page的值，假如不存在page，那么页数就是1。
-            $num=1;                                     //每页显示条数
+            $num=10;                                     //每页显示条数
             $url = end(explode('/',$_SERVER['PHP_SELF'])); // 获取当前访问的文件名
 
             //页码计算
@@ -188,7 +189,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         echo "<td>正常</td>";
                     else
                         echo "<td>被封</td>";
-                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a> <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteVideo($videoId)'>删除</a></td>";
+                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a> <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteVideo($videoId)'>封禁</a></td>";
                     echo  "</tr>";
                 }
                 echo "<tr><td colspan='8'>".$pagenav."</td></tr>";

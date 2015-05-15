@@ -39,7 +39,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
     <div class="mainer">
         <div class="admin-navbar">
             <span class="float-right">
-            	<a class="button button-little bg-main" href="#">前台首页</a>
+<!--            	<a class="button button-little bg-main" href="#">前台首页</a>-->
                 <a class="button button-little bg-yellow" href="login.html">注销登录</a>
             </span>
             <ul class="nav nav-inline admin-nav">
@@ -48,7 +48,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         <!--                        <li><a href="system.html">系统设置</a></li>-->
                         <!--                        <li><a href="content.html">内容管理</a></li>-->
                         <!--                        <li><a href="#">订单管理</a></li>-->
-                        <li class="active"><a href="#">用户管理</a></li>
+<!--                        <li class="active"><a href="#">用户管理</a></li>-->
                         <!--                        <li><a href="#">文件管理</a></li>-->
                         <!--                        <li><a href="#">栏目管理</a></li>-->
                     </ul>
@@ -59,7 +59,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 <li class="active"><a href="VedioManager.php" class="icon-file-text"> 视频</a>
                     <ul>
                         <!--                        <li><a href="#">添加内容</a></li>-->
-                        <li class="active"><a href="#">视频管理</a></li>
+<!--                        <li class="active"><a href="#">视频管理</a></li>-->
                         <!--                        <li><a href="#">分类设置</a></li>-->
                         <!--                        <li></li><a href="#">链接管理</a></li>-->
                     </ul>
@@ -85,38 +85,11 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <ul class="bread">
                 <li><a href="UserManager.php" class="icon-home"> 开始</a></li>
                 <li><a href="VedioManager.php">视频管理</a></li>
-                <?php
-                error_reporting(0);
-                $type=$_GET["type"];
-                if($type=="add")
-                    echo "<li>添加视频</li>";
-                else if($type=="update")
-                    echo "<li>更新视频</li>";
-                else
-                    exit;
-                ?>
+                <li>更新视频</li>
             </ul>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    function fileSelected() {
-        var file = document.getElementById('Filedata').files[0];
-        if (file) {
-            var fileSize = 0;
-            if (file.size > 1024 * 1024)
-                fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
-            else
-                fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
-
-            document.getElementById('fileName').innerHTML = 'Name: ' + file.name;
-            document.getElementById('fileSize').innerHTML = 'Size: ' + fileSize;
-            document.getElementById('fileType').innerHTML = 'Type: ' + file.type;
-        }
-    }
-</script>
-
-
 <div class="admin">
     <form method='POST'>
         <script>
@@ -146,12 +119,14 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 var swf_area=$("#swf_area").val();
                 var desc=$("#desc").val();
                 var par = "videoName="+videoName+"&swf_area="+swf_area+"&desc="+desc+"&vid="+msg;
+                alert(par);
                 $.ajax({
                     type:"POST",
                     url:"./updateVideoInfoDao.php",
                     data:par,
                     success:function(msg) {
                         var obj = JSON.parse(msg);
+                        alert(msg);
                         if(obj['success'] == '1'){
                             alert('更新成功');
                         }else{
@@ -199,7 +174,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                 <td>视频描述：</td>
                 <td>";
                     if(!empty($comment['videoName']))
-                        echo "<textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)' value='".$comment['videoName']."'></textarea>";
+                        echo "<textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)'>".$comment['videoName']."</textarea>";
                     else
                         echo "<textarea id='desc' rows='4' cols='50' name='comment' onfocus='changeText(1001)' onblur='changeText(1002)' >请在此处输入描述...</textarea>";
                 echo "</td>
