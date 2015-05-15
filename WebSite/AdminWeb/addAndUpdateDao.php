@@ -28,11 +28,11 @@ if($type=="add")
     $pass=md5($_POST["pass"]);
     $sql="INSERT INTO YK_User(nickName,CreateDate,token,userStatus,fromSource,iden,passw,OSType)VALUES('$nickname','$udate','$token','$status','$fromSource','$iden','$pass','$OSType')";
     $rs=$data->insertAction($sql);
-    $jsonRs['success']=$rs;
-//    if($rs=='1')
-//        $jsonRs['success']='1';
-//    else
-//        $jsonRs['success']='0';
+//    $jsonRs['success']=$rs;
+    if($rs=='1')
+        $jsonRs['success']='1';
+    else
+        $jsonRs['success']='0';
     echo json_encode($jsonRs);
 }
 else
