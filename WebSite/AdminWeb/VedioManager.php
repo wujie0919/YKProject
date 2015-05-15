@@ -105,7 +105,25 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
             <script>
                 function deleteVideo(msg)
                 {
-                    var par="vid="+msg;
+                    var par="vid="+msg+"&opt=jie";
+                    $.ajax({
+                        type:"POST",
+                        url:"./deleteVideo.php",
+                        data:par,
+                        success:function(msg) {
+                            var obj = JSON.parse(msg);
+                            if(obj['success'] == '1'){
+                                alert('操作成功');
+                                location.reload();
+                            }else{
+                                alert('操作失败');
+                            }
+                        }
+                    })
+                }
+                function jieVideo(msg)
+                {
+                    var par="vid="+msg+"opt=feng";
                     $.ajax({
                         type:"POST",
                         url:"./deleteVideo.php",
@@ -189,7 +207,11 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                         echo "<td>正常</td>";
                     else
                         echo "<td>被封</td>";
-                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a> <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteVideo($videoId)'>封禁</a></td>";
+                    echo "<td><a class='button border-blue button-little' href='updateVideoInfo.php?vid=".$videoId."'>修改</a>";
+                    if($video['videoStatus']=="0")
+                        echo "<a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteVideo($videoId)'>封禁</a></td>";
+                    else
+                        echo "<a class='button border-yellow button-little' href='javascript:void(0)' onclick='jieVideo($videoId)'>解禁</a></td>";
                     echo  "</tr>";
                 }
                 echo "<tr><td colspan='8'>".$pagenav."</td></tr>";

@@ -105,10 +105,27 @@ if(!$_SESSION["Login"])
             </div>
 
             <script>
-                function deleteUser(uinfo)
+                function jieUser(uinfo)
                 {
-                    var par="uid="+uinfo;
-                    alert(par);
+                    var par="uid="+uinfo+"&opt=jie";
+                    $.ajax({
+                        type:"POST",
+                        url:"./deleteUser.php",
+                        data:par,
+                        success:function(msg) {
+                            var obj = JSON.parse(msg);
+                            if(obj['success'] == '1'){
+                                alert('操作成功');
+                                location.reload();
+                            }else{
+                                alert('操作失败');
+                            }
+                        }
+                    })
+                }
+                function fengUser(uinfo)
+                {
+                    var par="uid="+uinfo+"&opt=feng";
                     $.ajax({
                         type:"POST",
                         url:"./deleteUser.php",
@@ -206,7 +223,11 @@ if(!$_SESSION["Login"])
                     else
                         echo "<td>其他</td>";
                     echo "<td><a class='button border-blue button-little' href='addUser.php?id=".$userId."&type=update'>修改</a>";
-                    echo " <a class='button border-yellow button-little' href='javascript:void(0)' onclick='deleteUser($userId)'>封禁</a>
+                    if($user['userStatus']=="0")
+                        echo " <a class='button border-yellow button-little' href='javascript:void(0)' onclick='fengUser($userId)'>封禁</a>";
+                    else
+                        echo " <a class='button border-yellow button-little' href='javascript:void(0)' onclick='jieUser($userId)'>解封</a>";
+                    echo"
                     </td>";
                     echo  "</tr>";
                 }
