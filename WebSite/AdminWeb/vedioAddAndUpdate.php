@@ -118,7 +118,7 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 
 
 <div class="admin">
-    <form method='POST' action='upload.php' enctype='multipart/form-data'>
+    <form method='POST' action="upload.php" enctype="multipart/form-data" >
 <!--    <form method="post" action="--><?php //echo $_SERVER['PHP_SELF']; ?><!--">-->
         <script>
             function changeText(txt)
@@ -230,7 +230,6 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
 
             function insertVedio()
             {
-                alert("123");
 //                var vedioName=$("#vedioName").val();
 //                var desc=$("#desc").val();
 //                var city=$("#swf_area").val();

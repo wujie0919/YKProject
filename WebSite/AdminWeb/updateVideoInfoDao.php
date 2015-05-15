@@ -12,10 +12,12 @@ $videoName=$_POST["videoName"];
 $swf_area=$_POST["swf_area"];
 $desc=$_POST["desc"];
 $vid=$_POST["vid"];
+/*
+ * videoName=888111&swf_area=??&desc=888111&vid=5
+ * */
 
 $data= new DataBase();
-$sql="UPDATE YK_Video SET videoName='$videoName',videoDesc='$desc',videoArea='$swf_area' FROM YK_Video WHERE videoId='$vid'";
-
+$sql="UPDATE YK_Video SET videoName='$videoName',videoDesc='$desc',videoArea='$swf_area' WHERE videoId='$vid'";
 $rs=$data->updateAction($sql);
 if($rs=='1')
     $jsonRs['success']='1';

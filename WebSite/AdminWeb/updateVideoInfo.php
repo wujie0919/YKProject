@@ -115,18 +115,17 @@ if(!$_SESSION["Login"] && $_SESSION["Login"]!="admin")
                     alert("视频名称不能为空！");
                     return;
                 }
-
                 var swf_area=$("#swf_area").val();
                 var desc=$("#desc").val();
                 var par = "videoName="+videoName+"&swf_area="+swf_area+"&desc="+desc+"&vid="+msg;
-                alert(par);
+//                alert(par);
                 $.ajax({
                     type:"POST",
                     url:"./updateVideoInfoDao.php",
                     data:par,
                     success:function(msg) {
                         var obj = JSON.parse(msg);
-                        alert(msg);
+//                        alert(msg);
                         if(obj['success'] == '1'){
                             alert('更新成功');
                         }else{
